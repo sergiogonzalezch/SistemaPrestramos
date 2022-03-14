@@ -1,0 +1,62 @@
+:root {
+	--primary: #1B365D;
+	--ligth: #ffffff;
+	--grey: #e5e5e5;
+}
+
+body {
+	color: var(--primary);
+	font-weight: 300;
+}
+
+.bg-primary {
+	background-color: var(--primary) !important;
+}
+
+.bg-ligth {
+	background-color: var(--ligth) !important;
+}
+
+.bg-grey {
+	background-color: var(--grey) !important;
+}
+
+.menu a:hover {
+	text-decoration: none;
+	color: #ffba00 !important;
+}
+
+.text-ligth {
+	color: var(--ligth) !important;
+}
+
+.stat {
+	border-right: 1px solid var(--grey) !important;
+}
+
+#sidebar-container {
+	min-height: 100vh;
+}
+
+#sidebar-container .logo {
+	padding: 1rem 1.25rem;
+}
+
+#sidebar-container .menu {
+	width: 12rem;
+}
+
+@media (max-width: 768px) {
+	#sidebar-container {
+		display: none;
+	}
+
+	.stat {
+		border: 0;
+	}
+}
+
+#content {
+
+	padding-bottom: 5rem;
+}

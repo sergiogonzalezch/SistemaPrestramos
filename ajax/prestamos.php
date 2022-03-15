@@ -1,11 +1,11 @@
 <?php
-//Establcer una sesion para obtenr infromacion de la sesion del usuario
+//Establcer una sesión para obtenr infromacion de la sesión del usuario
 session_start();
 //Llamar el modelo
 require_once "../models/Prestamos.php";
 //Crear una instancia del modelo
 $prestamos = new Prestamos();
-//Declarar la variables que se emlearan
+//Declarar las variables que se usaran
 $idPrestamo = isset( $_POST["idPrestamo"] )?
 limpiarCadena( $_POST["idPrestamo"] ):"";
 $edificio = isset( $_POST["edificio"] )?
@@ -30,12 +30,12 @@ $fechaS = isset( $_POST["fechaS"] )?
 limpiarCadena( $_POST["fechaS"] ):"";
 $idUsuario = $_SESSION['usuarios']['idUsuarios'];
 //---------------------------------------------------------------------------
-//Switch Case para selecionar una operacion a ejecturar
+//Switch Case para seleccionar una operación a ejecutar
 switch ( $_GET["op"] ) {
 	//Case para guardar y cerrar los prestamos
 	case 'guardarycerrar':
-	/*Secuencia If en la cual se validan si el registro esta vacio mediante el id del campo.
-	De ser asi se llama la funcion insertan para crear un nuevo registro*/
+	/*Secuencia If en la cual se validan si el registro está vacío mediante el id del campo.
+	De ser así se llama la función insertar para crear un nuevo registro*/
 	if ( empty( $idPrestamo ) ) {
 		//Declarar la zona horaria
 		$time = date_default_timezone_set( 'America/Mexico_city' );
@@ -49,14 +49,14 @@ switch ( $_GET["op"] ) {
 		//Recibir el idArticulo mediante post
 		$_POST["idArticulo"],
 		$fecha,
-		//Recibir la condicion mediante post
+		//Recibir la condición mediante post
 		$_POST["condicionEntrega"],
 		$fecha,
 		$idUsuario );
-		//Mediante una operacion ternaria evalua si la operacion fue exitosa o no.
+		//Mediante una operación ternaria evalúa si la operación fue exitosa o no.
 		echo $respuesta?"Prestamo registrado":"No se pudo registrar";
-	/*Si el campo no esta vacio llama a la funcion
-	cerrar para finalizar el prestamo modificando sus datos*/
+	/*Si el campo no está vacío llama a la función
+	cerrar para finalizar el préstamo modificando sus datos*/
 	} else {
 		//Declarar la zona horaria
 		$time = date_default_timezone_set( 'America/Mexico_city' );
@@ -67,22 +67,22 @@ switch ( $_GET["op"] ) {
 		$fecha,
 		$fecha,
 		$idUsuario );
-		//Mediante una operacion ternaria evalua si la operacion fue exitosa o no.
+		//Mediante una operación ternaria evalúa si la operación fue exitosa o no.
 		echo $respuesta?"Prestamo cerrado":"Error al cerrar el registro";
 	}
 	break;
 	//---------------------------------------------------------------------------
 	//Permite mostrar los valores de un registro determinado mediante su Id
 	case 'mostrar':
-	//Llamar la funcion
+	//Llamar la función
 	$respuesta = $prestamos->mostrar( $idPrestamo );
 	//Enviar los valores mediante JSON
 	echo json_encode( $respuesta );
-	//Llamar la funcion listar de detalle para visualizar los datos de los articulo prestados
+	//Llamar la función listar de detalle para visualizar los datos de los artículo prestados
 	$rspt = $prestamos->listarDetalle( $idPrestamo );
 	break;
 	//---------------------------------------------------------------------------
-	//Funcion para seleccionar un cliente
+	//Función para seleccionar un cliente
 	case 'selecCliente':
 	//Importar el modelo
 	require_once "../models/Prestarios.php";
@@ -90,7 +90,7 @@ switch ( $_GET["op"] ) {
 	$clientes = new Prestarios();
 	//llamar el metodo de la clase externa
 	$rspta = $clientes->selec();
-	//en listar los registro por medio del while
+	//Enlistar los registros por medio del while
 	while( $reg = $rspta->fetch_object() ) {
 		//Mediante echo crear un elemento HTML con los valores de la consulta del metodo
 		echo '<option value=' . $reg->idClientes. '>' . $reg->nombre . '</option>';
@@ -99,7 +99,7 @@ switch ( $_GET["op"] ) {
 	//---------------------------------------------------------------------------
 	//Case listar
 	case 'listar':
-	//Declarar las varibles como parametros para rango de fechas
+	//Declarar las variables como parámetros para rango de fechas
 	$fechaInicio = $_REQUEST["fechaInicio"];
 	$fechaFin = $_REQUEST["fechaFin"];
 	//Llamar el metodo listar
@@ -108,22 +108,22 @@ switch ( $_GET["op"] ) {
 	$data = Array();
 	while( $registro = $respuesta->fetch_object() ) {
 		$data[] = array(
-			/*Permite crear un boton con el valor del id del registro
-			donde se llama la funcion para editar el campo*/
-			/*Operador ternario que evalua el valor del campo Estatus*/
+			/*Permite crear un botón con el valor del id del registro
+			donde se llama la función para editar el campo*/
+			/*Operador ternario que   evalúa   el valor del campo Estatus*/
 			"0"=>$registro->Estatus == 'Aceptado'?
-			/*Si el valor del campo es igual a Aceptado entonces se visulizaran dos botones HTML
-			contanedados un permitira las funcion para mostrar con onclick mostrar
-			y el id del registro la informacion de los prestamos.
-			Y el segundo boton para realizar el cierre y devolucion de los
-			articulos con onclick devolucion y el id del prestamo*/
+			/*Si el valor del campo es igual a Aceptado entonces se visualizarán dos botones HTML
+			concatenados un permitira las funciones para mostrar con onclick mostrar
+			y el id del registro la información de los préstamos.
+			Y el segundo botón para realizar el cierre y devolución de los
+			artículos con onclick devolucion y el id del préstamo*/
 			'<button class="btn btn-primary" onclick="mostrar('.$registro->Id.')"><i class="fas fa-eye"></i></button>'.' <button class="btn btn-success" onclick="devolucion('.$registro->Id.')"><i class="fas fa-check"></i></button>':
-			/*i el valor del campo es diferente de Aceptado entonces se visulizaran dos elemtnos HTML
-			contanedados un permitira las funcion para mostrar con onclick mostrar
-			y el id del registro la informacion de los prestamos.
-			Y el segundo boton sera un elemento de tipo enlace con propiedades de boton y
+			/*Si el valor del campo es diferente de Aceptado entonces se visualizarán dos elementos HTML
+			concatenados un permitira las funciones para mostrar con el evento onclick mostrar
+			y el id del registro la información de los préstamos.
+			Y el segundo botón será un elemento de tipo enlace con propiedades de botón y
 			permite llamar a un archivo php de la carpeta reportes para desplegar
-			la informacion de los prestamos en un archivo PDF al recibir id del prestamo*/
+			la información de los préstamos en un archivo PDF al recibir id del préstamo*/
 			'<button class="btn btn-primary" onclick="mostrar('.$registro->Id.')"><i class="fas fa-eye"></i></button>'.
 			' <a target="_blank" type="button" class="btn btn-info" href="../reportes/rptpdetalles.php?Id='.$registro->Id.'"><i class="fas fa-download"></i></a>',
 			"1"=>$registro->Folio,
@@ -134,87 +134,87 @@ switch ( $_GET["op"] ) {
 			"6"=>$registro->Edificio,
 			"7"=>$registro->Area,
 			"8"=>$registro->Descripcion,
-			/*Operador ternario que evalua el valor del campo Estatus, para desplegar un texto editado segun el estatus del prestamos*/
+			/*Operador ternario que   evalúa   el valor del campo Estatus, para desplegar un texto editado según el estatus del prestamos*/
 			"9"=>$registro->Estatus == 'Aceptado'?
-			/*Si el valor del campo es igual a Aceptado entondes desplegara un
-			span de color amarrillo con el texto que dice En prestamos dando a
-			entender que el prestamo esta vigente*/
-			'<span class="align-middle badge badge-warning text-wrap">En prestamo</span>':
+			/*Si el valor del campo es igual a "Aceptado" entonces desplegara un
+			span de color amarrillo con el texto que dice "En préstamo" dando a
+			entender que el préstamo esta vigente*/
+			'<span class="align-middle badge badge-warning text-wrap">En préstamo</span>':
 			/*Si el valor es diferente, entonces desplegara un span de color verde
-			con el texto Concluido dando a entender que el prestamo a sido finalizado*/
+			con el texto "Concluido"" dando a entender que el préstamo a sido finalizado*/
 			'<span class="align-middle badge badge-success text-wrap">Concluido</span>'
 		);
 	}
 	//Almacenar los datos en un arreglo
 	$resultados = array(
 		"sEcho"=>1, //Información para el datatables
-		"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-		"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+		"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+		"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 		"aaData"=>$data
 	);
-	//Se envian los datos JSON
+	//Se envían los datos JSON
 	echo json_encode( $resultados );
 	break;
 	//---------------------------------------------------------------------------
-	//Funcion que permite listar los articulos que esten disponibles para ser prestados
+	//Función que permite listar los articulos que estén disponibles para ser prestados
 	case 'listarDisponibles':
 	//Importar el modelo
 	require_once "../models/Articulos.php";
 	//Crear instancia del modelo
 	$articulos = new Articulos();
-	//Llamar la funcion del modelo externo
+	//Llamar la función del modelo externo
 	$respuesta = $articulos->listarDisponibles();
 	//Declarar una variable para funciones de arreglo
 	$data = Array();
 	while( $registro = $respuesta->fetch_object() ) {
 		$data[] = array(
-			/*Permite crear un boton HTML, que tiene como proposito agregar
+			/*Permite crear un botón HTML, que tiene como propósito agregar
 			el articulo al registro mediante el evento onclick llamando a la
-			funcion agregraArticuloPrestamo*/
+			función agregraArticuloPrestamo*/
 			"0"=>'<button class="btn btn-success" onclick="agregarArticuloPrestamo
 					('.$registro->Id.',\''.$registro->Etiqueta.'\')"><i class="fas fa-plus"></i></button>',
 			"1"=>$registro->TipoArticulo,
 			"2"=>$registro->Etiqueta,
-			/*Operacion ternaria que verifica el valor de la condicion del
-			registro representado que el articulo esta en condiciones optimas*/
+			/*Operación ternaria que verifica el valor de la condición del
+			registro representado que el artículo esta en condiciones óptimas*/
 			"3"=>$registro->Condicion == 'Bueno'?
 			/*Si el valor es igual a Bueno desplegara un span de color verde,
 			con la leyenda de Bueno*/
 			'<span class="align-middle badge badge-success text-wrap">Bueno</span>':
-			/*Operacion ternaria anidada que verifica el valor de la
-			condicion del registro representado que el articulo es igual a regular*/
+			/*Operación ternaria anidada que verifica el valor de la
+			condición del registro representado que el artículo es igual a regular*/
 			( $registro->Condicion == 'Regular'?
 			/*Si el valor es igual a Regular desplegara un span de color amarrillo,
 			con la leyenda de Regular*/
 			'<span class="align-middle badge badge-warning text-wrap">Regular</span>':
-			/*Si el valor no conincide con ningulo de los dos anteriores entoces,
-			deplegara un span de color y la leyenda de malo, debido a que el
-			articulo esta en mal estado*/
+			/*Si el valor no coincide con ninguno de los dos anteriores entonces,
+			desplegara un span de color y la leyenda de malo, debido a que el
+			artículo está en mal estado*/
 			'<span class="align-middle badge badge-danger text-wrap">Malo</span>' ),
 			"4"=>$registro->Anaquel,
 			"5"=>$registro->CodigoBarras );
 		}
-		//Almacenar la informacion en un arreglo
+		//Almacenar la información en un arreglo
 		$resultados = array(
 			"sEcho"=>1, //Información para el datatables
-			"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-			"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+			"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+			"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 			"aaData"=>$data
 		);
-		//Se envian los datos JSON
+		//Se envían los datos JSON
 		echo json_encode( $resultados );
 		break;
 		//-------------------------------------------------------------------------
-		/*Permite listar los articulos prestados y sus datos de entrega
-		como los datos delavolucion*/
+		/*Permite listar los artículos prestados y sus datos de entrega
+		como los datos delavolución*/
 		case 'listarDetalle':
 		//Obtener el id del registro articuloprestamo
 		$id = $_GET["id"];
 		//Llamar el metodo y enviar el id del registro artiuloprestamo
 		$respuesta = $prestamos->listarDetalle( $id );
 		/*Despliega un elemento HTML de tipo tabla, para visualizar las cabeceras
-		de cada una de las celas y los campos con informacion de los
-		articulos prestados en el registro del prestamo*/
+		de cada una de las celdas y los campos con información de los
+		artículos prestados en el registro del préstamo*/
 		echo 	'<thead class="filas">
 					<th>Prestamo</th>
 					<th>Artículo</th>
@@ -225,7 +225,7 @@ switch ( $_GET["op"] ) {
 					<th>Condicion devolucion</th>
 					<th>Observaciones</th>
 				</thead>';
-		/*Mediante un ciclo while los valores seran desplegados en celda con codigo php
+		/*Mediante un ciclo while los valores serán desplegados en celda con código php
 		adentro para visualizar los valores respectivos en las celdas
 		dentro del arreglo del comando mysqli_fetch_assoc*/
 		while( $registro = mysqli_fetch_assoc( $respuesta ) ) {
@@ -240,7 +240,7 @@ switch ( $_GET["op"] ) {
 	<td><?php echo $registro['condicionEntrega'];
 			?></td>
 
-	<?php /*Realiza una operacion ternaria donde si el valor de devuelto es igual a uno
+	<?php /*Realiza una operación ternaria donde si el valor de devuelto es igual a uno
 	desplegara un span de color verde con la leyenda Devuelto.
 	Caso contrario visualizar un span rojo con el texto No Devuelt0*/
 			echo( $registro['devuelto'] == 1 )?'<td><span class="align-middle badge badge-success text-wrap"><i class=" fas fa-check"></i>Devuelto</span></td>':
@@ -257,29 +257,29 @@ switch ( $_GET["op"] ) {
 		}
 		break;
 		//-------------------------------------------------------------------------
-		//Permite listar los articulos prestados a devolver de un prestamo en especifico
+		//Permite listar los artículos prestados a devolver de un prestamo en especifico
 		case 'listarDevolucion':
-		//Operacion get, para obtener el id del prestamo
+		//Operación get, para obtener el id del préstamo
 		$id = $_GET["id"];
-		//Llamar ek metodo y enviar el id del prestami
+		//Llamar el metodo y enviar el id del préstamo
 		$respuesta = $prestamos->listarDevolucion( $id );
 		/*Despliega un elemento HTML de tipo tabla, para visualizar las cabeceras
-		de cada una de las celas y los campos con informacion de los
-		articulos prestados en el registro del prestamo*/
+		de cada una de las celdas y los campos con información de los
+		artículos prestados en el registro del préstamo*/
 		echo '<thead class="filas">
 			<th>Opciones</th>
 			<th>Artículo</th>
 			<th>Fecha de entrega</th>
 			<th>Condiciones de entrega</th>
 			</thead>';
-		/*Mediante un ciclo while los valores seran desplegados en celda con
-		codigo php adentro para visualizar los valores respectivos en las celdas
+		/*Mediante un ciclo while los valores serán desplegados en celda con
+		código php adentro para visualizar los valores respectivos en las celdas
 		dentro del arreglo del comando mysqli_fetch_assoc*/
 		while( $registro = mysqli_fetch_assoc( $respuesta ) ) {
 			?>
 <tr class="filas" id="<?php echo $registro['idPrestamo']?>">
-	<?php	/*Crea un enlace HTML con propiedades de boton para desplegar un modal con un
-	formulario que permite registrar y actualizar la devolucion de los articulos
+	<?php	/*Crea un enlace HTML con propiedades de botón para desplegar un modal con un
+	formulario que permite registrar y actualizar la devolución de los artículos
 	al recibir el id del registro articulosprestamos ( idArticuloPrestamo )*/
 			echo '<td><a type = "button" name = "devolucion"  data-toggle = "modal" href = "#modalDevolucion" data-target = "#modalDevolucion" class = "btn btn-success" onclick = "obtenerDevolucion('.$registro['idArticuloPrestamo'].')"><i class = "fas fa-check"></i>Devolver</a></td>';
 			?>
@@ -294,10 +294,10 @@ switch ( $_GET["op"] ) {
 		}
 		break;
 		//-------------------------------------------------------------------------
-		//Permite los datos de devolucion de los articulos que fueron prestados
+		//Permite los datos de devolución de los artículos que fueron prestados
 		case'obtenerDevolucion':
 		$respuesta = $prestamos->datosDevolucionPorId(
-		//Mediante el metodo post, devolvera los valores de los registros
+		//Mediante el metodo post, devolverá los valores de los registros
 		$_POST["idArticuloPrestamo"] );
 		while( $registro = mysqli_fetch_assoc( $respuesta ) ) {
 			$data[] = array(
@@ -309,19 +309,19 @@ switch ( $_GET["op"] ) {
 			//Almacenar en un arreglo
 			$resultados = array(
 				"sEcho"=>1,//Información para el datatables
-				"iTotalRecords"=>count( $data ),//enviamos el total registros al datatable
-				"iTotalDisplayRecords"=>count( $data ),//enviamos el total registros a visualizar
+				"iTotalRecords"=>count( $data ),//envía el total registros al datatable
+				"iTotalDisplayRecords"=>count( $data ),//envía el total registros a visualizar
 				"aaData"=>$data
 			);
-			//Se envian los datos JSON
+			//Se envían los datos JSON
 			echo json_encode( $data );
 			break;
 		//-------------------------------------------------------------------------
-		//Permite registrar los datos de devolucion de los articulos prestados
+		//Permite registrar los datos de devolución de los artículos prestados
 			case'devolver':
-		//Mediante una funcion if valida si fue enviado el idArticulosPrestamos del registro
+		//Mediante una función if valida si fue enviado el idArticulosPrestamos del registro
 			if ( isset( $_POST['idAP'] ) ) {
-			//Valida si recibio valores de los inputs, para realizar la actualizacion del registro
+			//Valida si recibió valores de los inputs, para realizar la actualización del registro
 				if ( !empty( $_POST['condicion'] ) && !empty( $_POST['observacion'] ) && !empty( $_POST['idA'] ) ) {
 					$idAP = $_POST['idAP'];
 					$time = date_default_timezone_set( 'America/Mexico_city' );
@@ -332,13 +332,13 @@ switch ( $_GET["op"] ) {
 			$respuesta = $prestamos->devolver( $idAP, $fecha,
 			$condicion, $observacion,
 			$idA );
-			//Si se cumplieron las condiciones de los if, entonce al terminar la actualizacion devolver el valor de 1
+			//Si se cumplieron las condiciones de los if, entonces al terminar la actualización devolverá el valor de 1
 			echo 1;
 		} else {
-			//Si no se cumplio la condicion entonces devolvera el valor de cero
+			//Si no se cumplió la condición entonces devolverá el valor de cero
 			echo 0;
 		}
-		//Si no fue envido el id, evolvera un valor de cero
+		//Si no fue enviado el id, devolverá un valor de cero
 	} else {
 		echo 0;
 	}

@@ -12,7 +12,7 @@ if (mysqli_connect_errno())
 	printf("Falló conexión a la base de datos: %$\n",mysqli_connect_error());
 	exit();
 }
-//Funcion if para llamar funciones
+//Función if para llamar funciones
 if(!function_exists('ejecutarConsulta'))
 	{
 	//Ejecutar consulta SQL

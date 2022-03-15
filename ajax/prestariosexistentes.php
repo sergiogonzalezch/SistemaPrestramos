@@ -9,14 +9,14 @@ $matricula = isset( $_POST["matricula"] )?limpiarCadena( $_POST["matricula"] ):"
 $idProgramaEducativo = isset( $_POST["idProgramaEducativo"] )?limpiarCadena( $_POST["idProgramaEducativo"] ):"";
 $idCargo = isset( $_POST["idCargo"] )?limpiarCadena( $_POST["idCargo"] ):"";
 //---------------------------------------------------------------------------
-//Switch Case para selecionar una operacion a ejecturar
+//Switch Case para seleccionar una operación a ejecutar
 switch ( $_GET["op"] ) {
 	//Case para guardar y editar los datos
 	case 'guardar':
-	/*Secuencia If en la cual se validan si el registro esta vacio mediante el id del campo.
-	De ser asi se llama la funcion insertan para crear un nuevo registro*/
+	/*Secuencia If en la cual se validan si el registro está vacío mediante el id del campo.
+	De ser asi se llama la función insertar para crear un nuevo registro*/
 	if ( empty( $idClientes ) ) {
-		/*Si el campo no esta vacio llama a la funcion
+		/*Si el campo no está vacío llama a la función
 		editar para modificar el dato o los datos a cambiar del registro*/
 		$respuesta = $clientes->insertar( $matricula,
 		$idDatosGenerales,
@@ -26,14 +26,14 @@ switch ( $_GET["op"] ) {
 	}
 	break;
 	//---------------------------------------------------------------------------
-	/*Case para seleccionar el registro de los datos personales que no esten asignados
+	/*Case para seleccionar el registro de los datos personales que no estén asignados
 	a un registro de la tabla clientes para registrar el prestario nuevo*/
 	case 'selecDato':
 	//llamar el modelo
 	require_once "../models/Prestarios.php";
 	$dato = new Prestarios();
 	$rspta = $dato->selecDato();
-	//en listar los registro por medio del while
+	//en listar los registroa por medio del while
 	while( $reg = $rspta->fetch_object() ) {
 		echo '<option value=' . $reg->idDatosGenerales . '>' . $reg->nombre. '</option>';
 	}
@@ -45,7 +45,7 @@ switch ( $_GET["op"] ) {
 	require_once "../models/ProgramaEducativo.php";
 	$programasEducativos = new ProgramaEducativo();
 	$rspta = $programasEducativos->selec();
-	//en listar los registro por medio del while
+	//en listar los registros por medio del while
 	while( $reg = $rspta->fetch_object() ) {
 		echo '<option value=' . $reg->idProgramaEducativo . '>' . $reg->programasEducativos . '</option>';
 	}
@@ -57,7 +57,7 @@ switch ( $_GET["op"] ) {
 	require_once "../models/Cargos.php";
 	$cargo = new Cargos();
 	$rspta = $cargo->selec();
-	//en listar los registro por medio del while
+	//en listar los registros por medio del while
 	while( $reg = $rspta->fetch_object() ) {
 		echo '<option value=' . $reg->idCargo. '>' . $reg->cargoCliente . '</option>';
 	}

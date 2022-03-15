@@ -16,14 +16,14 @@ $matricula = isset( $_POST["matricula"] )?limpiarCadena( $_POST["matricula"] ):"
 $idProgramaEducativo = isset( $_POST["idProgramaEducativo"] )?limpiarCadena( $_POST["idProgramaEducativo"] ):"";
 $idCargo = isset( $_POST["idCargo"] )?limpiarCadena( $_POST["idCargo"] ):"";
 //---------------------------------------------------------------------------
-//Switch Case para selecionar una operacion a ejecturar
+//Switch Case para seleccionar una operación a ejecutar
 switch ( $_GET["op"] ) {
 	//Case para guardar y editar los datos
 	case 'guardaryeditar':
-	/*Secuencia If en la cual se validan si el registro esta vacio mediante el id del campo.
-	De ser asi se llama la funcion insertan para crear un nuevo registro*/
+	/*Secuencia If en la cual se validan si el registro esta vacío mediante el id del campo.
+	De ser asi se llama la función insertar para crear un nuevo registro*/
 	if ( empty( $idDatosGenerales ) ) {
-		/*Si el campo no esta vacio llama a la funcion
+		/*Si el campo no está vacíollama a la función
 		editar para modificar el dato o los datos a cambiar del registro*/
 		$respuesta = $prestamista->insertar( $nombres,
 		$primerApellido,
@@ -32,10 +32,10 @@ switch ( $_GET["op"] ) {
 		$matricula,
 		$idProgramaEducativo,
 		$idCargo );
-		//Declarar una variable para alamcenar valores en un arreglo
+		//Declarar una variable para almacenar valores en un arreglo
 		echo $respuesta?"Cliente registrado":"No se pudo registrar";
 	} else {
-		/*Si el campo no esta vacio llama a la funcion
+		/*Si el campo no está vacío llama a la función
 		editar para modificar el dato o los datos a cambiar del registro*/
 		$respuesta = $prestamista->editar( $idDatosGenerales,
 		$nombres,
@@ -45,7 +45,7 @@ switch ( $_GET["op"] ) {
 		$matricula,
 		$idProgramaEducativo,
 		$idCargo );
-		//Declarar una variable para alamcenar valores en un arreglo
+		//Declarar una variable para almacenar valores en un arreglo
 		echo $respuesta?"Cliente actualizado":"No se pudo actualizar";
 	}
 	break;
@@ -62,8 +62,8 @@ switch ( $_GET["op"] ) {
 	//con un ciclo while se van proyectando los campos necesarios de la tabla
 	while( $registro = $respuesta->fetch_object() ) {
 		$data[] = array(
-			/*Permite crear un boton con el valor del id del registro
-			donde se llama la funcion para editar el campo*/
+			/*Permite crear un botón con el valor del id del registro
+			donde se llama la función para editar el campo*/
 			"0"=>'<button class="btn btn-warning"
 			onclick="mostrar('.$registro->idDatosGenerales.')">
 			<i class="fas fa-edit"></i></button>',
@@ -78,21 +78,21 @@ switch ( $_GET["op"] ) {
 		//Guardar la infromacion en un arreglo
 		$resultados = array(
 			"sEcho"=>1, //Información para el datatables
-			"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-			"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+			"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+			"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 			"aaData"=>$data
 		);
 		//Enviar los datos en JSON
 		echo json_encode( $resultados );
 		break;
 		//---------------------------------------------------------------------------
-		//Funcion para seleccionar el programa educativo que pertenece el prestario
+		//Función para seleccionar el programa educativo que pertenece el prestario
 		case 'selecPrograma':
 		//llamar el modelo
 		require_once "../models/ProgramaEducativo.php";
 		$programasEducativos = new ProgramaEducativo();
 		$rspta = $programasEducativos->selec();
-		//en listar los registro por medio del while
+		//en listar los registros por medio del while
 		while( $reg = $rspta->fetch_object() ) {
 			echo '<option value=' . $reg->idProgramaEducativo . '>' . $reg->programasEducativos . '</option>';
 		}
@@ -104,7 +104,7 @@ switch ( $_GET["op"] ) {
 		require_once "../models/Cargos.php";
 		$cargo = new Cargos();
 		$rspta = $cargo->selec();
-		//en listar los registro por medio del while
+		//en listar los registros por medio del while
 		while( $reg = $rspta->fetch_object() ) {
 			echo '<option value=' . $reg->idCargo. '>' . $reg->cargoCliente . '</option>';
 		}

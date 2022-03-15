@@ -3,7 +3,7 @@
 require_once "../models/BajaArticulo.php";
 //Crear una instancia del modelo
 $baja = new BajaArticulo();
-//Declarar la variables que se emlearan
+//Declarar las variables que se usaran
 $idBaja = isset( $_POST["idBaja"] )?
 limpiarCadena( $_POST["idBaja"] ):"";
 $fechaBaja = isset( $_POST["fechaBaja"] )?
@@ -13,37 +13,37 @@ limpiarCadena( $_POST["observacionBaja"] ):"";
 $idArticulo = isset( $_POST["idArticulo"] )?
 limpiarCadena( $_POST["idArticulo"] ):"";
 //---------------------------------------------------------------------------
-//Switch Case para selecionar una operacion a ejecturar
+//Switch Case para seleccionar una operación a ejecutar
 switch ( $_GET["op"] ) {
 	//Case para guardar y editar los datos
 	case 'guardaryeditar':
-	/*Secuencia If en la cual se validan si el registro esta
-	vacio mediante el id del campo.
-	De ser asi se llama la funcion insertan para crear un nuevo registro*/
+	/*Secuencia If en la cual se validan si el registro está
+	vacío mediante el id del campo.
+	De ser así llama la función insertar para crear un nuevo registro*/
 	if ( empty( $idBaja ) ) {
 		/*Llamar el metodo insertar en el modelo y
-		enviar las variables como parametros*/
+		enviar las variables como parámetros*/
 		$respuesta = $baja->insertar( $fechaBaja,
 		$observacionBaja,
 		$idArticulo );
-		//Mediante una operacion ternaria evalua si la operacion fue exitosa o no.
+		//Mediante una operación ternaria evalúa si la operación fue exitosa o no.
 		echo $respuesta?"Baja registrado":"No se pudo registrar";
 	}
-	/*Si el campo no esta vacio llama a la funcion editar
+	/*Si el campo no está vacío, llama a la función editar
 	para modificar el dato o los datos a cambiar del registro*/
 	else {
-		/*Si el campo no esta vacio llama a la funcion editar
+		/*Si el campo no esta vacío llama a la función editar
 		para modificar el dato o los datos a cambiar del registro*/
 		$respuesta = $baja->editar( $idBaja,
 		$observacionBaja );
-		//Mediante una operacion ternaria evalua si la operacion fue exitosa o no.
+		//Mediante una operación ternaria evalúa si la operación fue exitosa o no.
 		echo $respuesta?"Baja actualizado":"No se pudo actualizar";
 	}
 	break;
 	//---------------------------------------------------------------------------
-	/*Case funcion para la funcion eliminar
+	/*Case función para la función eliminar
 	case 'eliminar':
-	//Llamar la funcion eliminar del modelo y evniar el id del articulo a dar de baja como parametro*/
+	//Llamar la función eliminar del modelo y enviar el id del artículo a dar de baja como parámetro*/
 	$rspta = $baja->eliminar( $idArticulo );
 	echo $rspta?"Registro eliminado":
 	"No se puede eliminar";
@@ -51,7 +51,7 @@ switch ( $_GET["op"] ) {
 	//---------------------------------------------------------------------------
 	//Case mostrar
 	case 'mostrar':
-	//Llamar la funcion mostar y enviar el id del registro como parametro
+	//Llamar la función mostrar y enviar el id del registro como parámetro
 	$respuesta = $baja->mostrar( $idBaja );
 	//Enviar los valores mediante JSON
 	echo json_encode( $respuesta );
@@ -65,8 +65,8 @@ switch ( $_GET["op"] ) {
 	/*con un ciclo while se van proyectando los campos necesarios de la tabla*/
 	while( $registro = $respuesta->fetch_object() ) {
 		$data[] = array(
-			/*Permite crear un boton con el valor del id del registro
-			donde se llama la funcion para editar
+			/*Permite crear un botón con el valor del id del registro
+			donde se llama la función para editar
 			el campo mediante el Id del registro tambien*/
 			"0"=>'<button class="btn btn-warning"
 			onclick="mostrar('.$registro->Id.')">
@@ -75,14 +75,14 @@ switch ( $_GET["op"] ) {
 			"2"=>$registro->Observaciones,
 			"3"=>$registro->Articulo );
 		}
-		//Almacenar la informacion en un arreglo
+		//Almacenar la información en un arreglo
 		$resultados = array(
 			"sEcho"=>1, //Información para el datatables
-			"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-			"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+			"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+			"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 			"aaData"=>$data
 		);
-		//Se envian los datos JSON
+		//Se envían los datos JSON
 		echo json_encode( $resultados );
 		break;
 	}

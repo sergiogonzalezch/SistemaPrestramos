@@ -3,21 +3,21 @@
 require_once "../models/Consulta.php";
 //Crear una instancia del modelo
 $consulta = new Consulta();
-/*Todas la funcionalidades de las consultas necesitan dos parametros
-paraestablecer  un rango de fechas mediante el parametro fechaIncio, paraestablecer  el comienzo de las busquedas y fechaFin para delimitar un periodo*/
-//Switch Case para selecionar una operacion a ejecturar
+/*Todas las funcionalidades de las consultas necesitan dos parámetros
+para establecer  un rango de fechas mediante el parámetro fechaIncio, para establecer  el comienzo de las búsquedas y fechaFin para delimitar un periodo*/
+//Switch Case para seleccionar una operación a ejecutar
 switch ( $_GET["op"] ) {
 	/*Case consulta servicios que permite enlistar los registros de servicios realizados por los usuarios a los prestamos atendidos*/
 	case 'consultaServicios':
-	/*Inicializar la varible fechaIncio para ser usado como parametro*/
+	/*Inicializar la varible fechaIncio para ser usado como parámetro*/
 	$fechaInicio = $_REQUEST["fechaInicio"];
-	/*Inicializar la varible fechaFin para ser usado como parametro*/
+	/*Inicializar la varible fechaFin para ser usado como parámetro*/
 	$fechaFin = $_REQUEST["fechaFin"];
 	/*Llamar a la consulta servicios y enviar las variables
-	como parametros para el rango de fechas*/
+	como parámetros para el rango de fechas*/
 	$respuesta = $consulta->consultaServicios( $fechaInicio,
 	$fechaFin );
-	//Declarar una variable para alamcenar valores en un arreglo
+	//Declarar una variable para almacenar valores en un arreglo
 	$data = Array();
 	//con un ciclo while se van proyectando los campos necesarios de la tabla
 	while( $registro = $respuesta->fetch_object() ) {
@@ -32,26 +32,26 @@ switch ( $_GET["op"] ) {
 	}//Enviar los valores en un arreglo
 	$resultados = array(
 		"sEcho"=>1, //Información para el datatables
-		"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-		"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+		"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+		"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 		"aaData"=>$data
 	);
-	//Se envian los datos JSON
+	//Se envían los datos JSON
 	echo json_encode( $resultados );
 	break;
 	//---------------------------------------------------------------------------
-	/*Case consulta servicios que permite enlistar los articulos
+	/*Case consulta servicios que permite enlistar los artículos
 	solicitados por los prestarios y contabiliza el total
-	de articulos solicitados por tipo y por cliente*/
+	de artículos solicitados por tipo y por cliente*/
 	case 'consultaPrestarios':
-	/*Inicializar la varible fechaIncio para ser usado como parametro*/
+	/*Inicializar la varible fechaIncio para ser usado como parámetro*/
 	$fechaInicio = $_REQUEST["fechaInicio"];
-	/*Inicializar la varible fechaFin para ser usado como parametro*/
+	/*Inicializar la varible fechaFin para ser usado como parámetro*/
 	$fechaFin = $_REQUEST["fechaFin"];
 	/*Llamar a la consulta prestarios y enviar las variables
-	como parametros para el rango de fechas*/
+	como parámetros para el rango de fechas*/
 	$respuesta = $consulta->consultaPrestarios( $fechaInicio, $fechaFin );
-	//Declarar una variable para alamcenar valores en un arreglo
+	//Declarar una variable para almacenar valores en un arreglo
 	$data = Array();
 	//con un ciclo while se van proyectando los campos necesarios de la tabla
 	while( $registro = $respuesta->fetch_object() ) {
@@ -66,27 +66,27 @@ switch ( $_GET["op"] ) {
 	}//Enviar los valores en un arreglo
 	$resultados = array(
 		"sEcho"=>1, //Información para el datatables
-		"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-		"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+		"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+		"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 		"aaData"=>$data
 	);
-	//Se envian los datos JSON
+	//Se envían los datos JSON
 	echo json_encode( $resultados );
 	break;
 	//---------------------------------------------------------------------------
-	/*Case consulta entregas que permite enlistar los articulos
-	entregados y contabiliza el numero de veces en que fueron
-	entregados segun su tipo de articulo*/
+	/*Case consulta entregas que permite enlistar los artículos
+	entregados y contabiliza el número de veces en que fueron
+	entregados según su tipo de articulo*/
 	case 'consultaEntregas':
-	/*Inicializar la varible fechaIncio para ser usado como parametro*/
+	/*Inicializar la varible fechaIncio para ser usado como parámetro*/
 	$fechaInicio = $_REQUEST["fechaInicio"];
-	/*Inicializar la varible fechaFin para ser usado como parametro*/
+	/*Inicializar la varible fechaFin para ser usado como parámetro*/
 	$fechaFin = $_REQUEST["fechaFin"];
 	/*Llamar a la consulta entregas y enviar las variables
-	como parametros para el rango de fechas*/
+	como parámetros para el rango de fechas*/
 	$respuesta = $consulta->consultaEntregas( $fechaInicio,
 	$fechaFin );
-	//Declarar una variable para alamcenar valores en un arreglo
+	//Declarar una variable para almacenar valores en un arreglo
 	$data = Array();
 	//con un ciclo while se van proyectando los campos necesarios de la tabla
 	while( $registro = $respuesta->fetch_object() ) {
@@ -100,25 +100,25 @@ switch ( $_GET["op"] ) {
 	}//Enviar los valores en un arreglo
 	$resultados = array(
 		"sEcho"=>1, //Información para el datatables
-		"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-		"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+		"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+		"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 		"aaData"=>$data
 	);
-	//Se envian los datos JSON
+	//Se envían los datos JSON
 	echo json_encode( $resultados );
 	break;
 	//---------------------------------------------------------------------------
 	/*Case consulta ubicaciones que permite enlistar los articulos
-	prestados y contabiliza el numero de veces en que fueron
-	entregados segun su tipo de articulo y la ubicacion
+	prestados y contabiliza el úumero de veces en que fueron
+	entregados según su tipo de artículo y la ubicación
 	donde fueron utilizados*/
 	case 'consultaUbicaciones':
-	/*Inicializar la varible fechaIncio para ser usado como parametro*/
+	/*Inicializar la varible fechaIncio para ser usado como parámetro*/
 	$fechaInicio = $_REQUEST["fechaInicio"];
-	/*Inicializar la varible fechaFin para ser usado como parametro*/
+	/*Inicializar la varible fechaFin para ser usado como parámetro*/
 	$fechaFin = $_REQUEST["fechaFin"];
 	$respuesta = $consulta->consultaUbicaciones( $fechaInicio, $fechaFin );
-	//Declarar una variable para alamcenar valores en un arreglo
+	//Declarar una variable para almacenar valores en un arreglo
 	$data = Array();
 	//con un ciclo while se van proyectando los campos necesarios de la tabla
 	while( $registro = $respuesta->fetch_object() ) {
@@ -134,24 +134,24 @@ switch ( $_GET["op"] ) {
 	}//Enviar los valores en un arreglo
 	$resultados = array(
 		"sEcho"=>1, //Información para el datatables
-		"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-		"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+		"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+		"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 		"aaData"=>$data
 	);
-	//Se envian los datos JSON
+	//Se envían los datos JSON
 	echo json_encode( $resultados );
 	break;
 	//---------------------------------------------------------------------------
-	/*Case consulta devolucion que permite enlistar los articulos
-	devueltosy contabiliza el numero de veces en que fueron
-	devueltos segun su tipo de articulo y su condicion de devolucion*/
+	/*Case consulta devolución que permite enlistar los artículos
+	devueltos y contabiliza el número de veces en que fueron
+	devueltos según su tipo de artículo y su condición de devolución*/
 	case 'consultaDevolucion':
-	/*Inicializar la varible fechaIncio para ser usado como parametro*/
+	/*Inicializar la varible fechaIncio para ser usado como parámetro*/
 	$fechaInicio = $_REQUEST["fechaInicio"];
-	/*Inicializar la varible fechaFin para ser usado como parametro*/
+	/*Inicializar la varible fechaFin para ser usado como parámetro*/
 	$fechaFin = $_REQUEST["fechaFin"];
 	$respuesta = $consulta->consultaDevolucion( $fechaInicio, $fechaFin );
-	//Declarar una variable para alamcenar valores en un arreglo
+	//Declarar una variable para almacenar valores en un arreglo
 	$data = Array();
 	//con un ciclo while se van proyectando los campos necesarios de la tabla
 	while( $registro = $respuesta->fetch_object() ) {
@@ -165,11 +165,11 @@ switch ( $_GET["op"] ) {
 	}//Enviar los valores en un arreglo
 	$resultados = array(
 		"sEcho"=>1, //Información para el datatables
-		"iTotalRecords"=>count( $data ), //enviamos el total registros al datatable
-		"iTotalDisplayRecords"=>count( $data ), //enviamos el total registros a visualizar
+		"iTotalRecords"=>count( $data ), //envía el total registros al datatable
+		"iTotalDisplayRecords"=>count( $data ), //envía el total registros a visualizar
 		"aaData"=>$data
 	);
-	//Se envian los datos JSON
+	//Se envían los datos JSON
 	echo json_encode( $resultados );
 	break;
 }

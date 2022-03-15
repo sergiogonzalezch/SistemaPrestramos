@@ -12,7 +12,7 @@ require_once 'superior.php';
 			<div class="row">
 				<div class="col-lg-9 col-md-8">
 					<h1 class="font-weight-bold mb-0">Prestario nuevo</h1>
-					<p>PRegistrar un solicitante nuevo desde un personal existente</p>
+					<p>Registrar un solicitante nuevo desde un personal existente</p>
 				</div>
 			</div>
 		</div>

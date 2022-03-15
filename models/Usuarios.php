@@ -1,30 +1,28 @@
 <?php
-//Incluir la conexion a la base de datos
+//Incluir la conexión a la base de datos
 require "../config/conexion.php";
 Class Usuarios {
 	//Constructor
 	public function _construct() {
 	}
-	//Metodos para insertar
+	//Métodos para insertar
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
 	* Metodo que permite registrar un nuevo usuario,
 	* para acceder al sistema.
-	* @param  string $nombres  Parametro que almacena la informacion del nombre( s ) de la persona a registrar
-	* @param  string $primerApellido parametro que recibe el primer apellido de la persona
-	* @param  string $segundoApellido parametro que recibe el segundo apellido de la persona
+	* @param  string $nombres parámetro que almacena la información del nombre( s ) de la persona a registrar
+	* @param  string $primerApellido parámetro que recibe el primer apellido de la persona
+	* @param  string $segundoApellido parámetro que recibe el segundo apellido de la persona
 	* @param  string $correoInstitucional recibe como valor el correo de contacto de la persona
-	* @param  string $rolUsuario   rol que desempeñara en el sistema sea un
-	* administrador o prestamista
+	* @param  string $rolUsuario rol que desempeñara en el sistema sea un administrador o prestamista
 	* @param  string $contrasenaUsuario contraseña del usuario
-	* @param  string $aliasUsuario  nombre con el cual el usuario estara dentro del sistema
+	* @param  string $aliasUsuario nombre con el cual el usuario estará dentro del sistema
 	* @param  string $imagen  nombre de la imagen
-	* @param  integer $idDatosGenerales  id que permite la relacion entre los datos
-	* del usuario y los datos gernerales
-	* @return Retorna una ejecucion SQL
+	* @param  integer $idDatosGenerales  id que permite la relación entre los datos
+	* del usuario y los datos generales
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function insertar( $nombres,
 	$primerApellido,
 	$segundoApellido,
@@ -57,28 +55,27 @@ Class Usuarios {
 		'$idPersona')";
 		return ejecutarConsulta( $sqlUsuario );
 	}
-	//Metodos para editar registros
+	//Métodos para editar registros
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Metodos para editar el registro de la tabla,
-	* segun el valor del id del registro a modificar, junto con los parametros
-	* requeridos a modificar, mediante el uso de una funcion SQL UPDATE
+	* Métodos para editar el registro de la tabla,
+	* según el valor del id del registro a modificar, junto con los parámetros
+	* requeridos a modificar, mediante el uso de una función SQL UPDATE
 	* @param  integer $idUsuarios Recibe el id del registro de la tabla usuario para editar
-	* @param  string $nombres  Parametro que almacena la informacion del nombre( s ) de la persona a registrar
-	* @param  string $primerApellido parametro que recibe el primer apellido de la persona
-	* @param  string $segundoApellido parametro que recibe el segundo apellido de la persona
+	* @param  string $nombres  Parametro que almacena la información del nombre( s ) de la persona a registrar
+	* @param  string $primerApellido parámetro que recibe el primer apellido de la persona
+	* @param  string $segundoApellido parámetro que recibe el segundo apellido de la persona
 	* @param  string $correoInstitucional recibe como valor el correo de contacto de la persona
 	* @param  string $rolUsuario   rol que desempeñara en el sistema sea un
 	* administrador o prestamista
 	* @param  string $contrasenaUsuario contraseña del usuario
-	* @param  string $aliasUsuario  nombre con el cual el usuario estara dentro del sistema
+	* @param  string $aliasUsuario  nombre con el cual el usuario estará dentro del sistema
 	* @param  string $imagen  nombre de la imagen
-	* @param  integer $idDatosGenerales  id que permite la relacion entre los datos
-	* del usuario y los datos gernerales
-	* @return Retorna una ejecucion SQL
+	* @param  integer $idDatosGenerales  id que permite la relación entre los datos
+	* del usuario y los datos generales
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function editar( $idDatosGenerales,
 	$nombres,
 	$primerApellido,
@@ -106,20 +103,17 @@ Class Usuarios {
 		aliasUsuario='$aliasUsuario',
 		imagen='$imagen'
 		WHERE idDatosGenerales='$idDatosGenerales'";
-		return ejecutarConsulta( $sql );}
-
-
-
-	//Metodo que muestra un regirso en especifico
+		return ejecutarConsulta( $sql );
+	}
+	//Metodo que muestra un registro en especifico
 	/**
-	* @author Sergio Gpe. Gonzalez Chavez
+	* @author Sergio Gpe. González Chávez
 	* @public
-	* Permite selecccionar los campos de un registro al recibir el id, del
-	* registro como parametro y el uso de SELECT*FROM, para seleccionar toda la fila
+	* Permite seleccionar los campos de un registro al recibir el id, del
+	* registro como parámetro y el uso de SELECT*FROM, para seleccionar toda la fila
 	* @param  integer $idAnaquel Recibe el id del registro a mostrar sus datos
-	* @return Retorna una ejecucion SQL
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function mostrar( $idDatosGenerales ) {
 		$sqlDatos = "SELECT datosgenerales.idDatosGenerales,
 		datosgenerales.nombres,
@@ -136,13 +130,12 @@ Class Usuarios {
 	}
 	//Metodo para enlistar los registros
 	/**
-	* @author Sergio Gpe. Gonzalez Chavez
+	* @author Sergio Gpe. González Chávez
 	* @public
 	* Selecciona todos los registros de la tabla haciendo uso de SELECT*FROM,
 	* junto con datos de otras tablas mediante inner join
-	* @return Retorna una ejecucion SQL
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function listar() {
 		$sql = "SELECT usuarios.idDatosGenerales,
 		datosgenerales.nombres,
@@ -158,16 +151,15 @@ Class Usuarios {
 	}
 	//Metodo para verificar la existencia del usuario
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	* @public
-	* Metodo, que permite la validacion si existe el registro del
+	* Metodo, que permite la validaciónsi existe el registro del
 	* usuario al recibir el alias y la contraseña de usuario, este
 	* metodo es utilizado para el login
 	* @param  string $contrasenaUsuario contraseña del usuario
-	* @param  string $aliasUsuario  nombre con el cual el usuario estara dentro del sistema
-	* @return Retorna una ejecucion SQL
+	* @param  string $aliasUsuario  nombre con el cual el usuario estará dentro del sistema
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function verificar( $aliasUsuario, $contrasenaUsuario ) {
 		//Retrasar dos segundos la validacion
 		sleep(1);
@@ -180,7 +172,14 @@ Class Usuarios {
 		AND contrasenaUsuario='$contrasenaUsuario'";
 		return ejecutarConsulta( $sql );
 	}
-
+	//Metodo para seleccionar los registros
+	/**
+	* @author Sergio Gpe. González Chávez
+	* @public
+	* Selecciona todos los registros de la tabla haciendo uso de SELECT*FROM
+	* para el ser usado con la herramienta selectpicker
+	* @return Retorna una ejecución SQL
+	*/
 	public function selecDato() {
 		$sql = "SELECT datosgenerales.idDatosGenerales, CONCAT(datosgenerales.nombres,' ', datosgenerales.primerApellido,' ', datosgenerales.segundoApellido)AS nombre FROM datosgenerales WHERE NOT EXISTS( SELECT*FROM usuarios WHERE datosgenerales.idDatosGenerales=usuarios.idDatosGenerales);";
 		return ejecutarConsulta( $sql );

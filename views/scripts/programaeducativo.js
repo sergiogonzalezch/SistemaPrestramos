@@ -1,22 +1,26 @@
-/*Crear la variable global tabla para realizar el procedimiento de enlistar los registros*/
+/*Crear la variable global tabla para realizar el
+procedimiento de enlistar los registros*/
 var tabla;
 //Init
-//Funcion que se ejecuta al inicio
+//Función que se ejecuta al inicio
 function init() {
-	/*Llamar a la funcion listar se ejecuta al incio para visualizar todos los registros en una tabla de datatables*/
+	/*Llamar a la función listar se ejecuta al inicio
+	para visualizar todos los registros en una tabla
+	de datatables*/
 	listar();
 }
 //Limpiar
-//Declarar una funcion para limpiar los inputs del formulario
+//Declarar una función para limpiar los inputs del formulario
 function limpiar() {
 	//Declarar los campos a limpiar
 	$("#idProgramaEducativo").val("");
 	$("#programasEducativos").val("");
 }
 //Listar
-/*Declarar funcion listar que permite visualizar los registro sde un a consulta*/
+/*Declarar función listar que permite visualizar los registros de una consulta*/
 function listar() {
-	//Establecer el elemento HTML de la tabla en la variable global mediante el id de la tabla (#tbllistado)
+	/*Establecer el elemento HTML de la tabla en la variable
+	global mediante el id de la tabla (#tbllistado)*/
 	tabla = $('#tbllistado').dataTable({
 		"aProcessing": true, //Activar el procesamiento del datatables
 		"aServerSide": true, //Paginación y filtrado realizados por el servidor
@@ -29,11 +33,12 @@ function listar() {
 				],
 		//Indicar si la tabla es responsive
 		responsive: true,
-		/*Mediante operaciones ajax recibir los valores para enlistar los registros de la consulta*/
+		/*Mediante operaciones ajax recibir los valores para
+		enlistar los registros de la consulta*/
 		"ajax": {
-			//Indicar la url del archivo y donde obtivene los datos
+			//Indicar la url del archivo y donde obtiene los datos
 			url: '../ajax/programaeducativo.php?op=listar',
-			//Indicar el tipo de operacion para optener los datos
+			//Indicar el tipo de operación para obtener los datos
 			type: "get",
 			//Formato de los datos codificados
 			dataType: "json",
@@ -42,7 +47,7 @@ function listar() {
 				console.log(e.responseText);
 			}
 		},
-		//Desplegar la informacion del data tables en español
+		//Desplegar la información del datatables en español
 		"autoWidth": false,
 		"language": {
 			"lengthMenu": "Mostrando _MENU_ registros por página",
@@ -58,7 +63,7 @@ function listar() {
 				"previous": "Anterior"
 			}
 		},
-		//Paginacion delos resultados del datatable
+		//Paginación de los resultados del datatables
 		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 		"bDestroy": true,
 		"iDisplayLength": 15, //Paginación
@@ -66,42 +71,45 @@ function listar() {
 	}).DataTable();
 }
 //Guardar y editar
-/*Declarar la funcion guardar y editar para la creacion o edicion de resgitros*/
+/*Declarar la función guardar y editar para la creación o edición de registros*/
 function guardaryeditar() {
-	//Al seleccionar el boton (#btnGuardar), se desahabilitara
+	//Al seleccionar el botón (#btnGuardar), se deshabilitará
 	$("#btnGuardar").prop("disable", true);
-	//Obtener los valores de lo elementos del formulario mediante el id del formulario (#formulario)
+	//Obtener los valores de los elementos del formulario mediante el id del formulario (#formulario)
 	var formData = new FormData($("#formulario")[0]);
-	//Metodo ajax para el envio de los datos del formulario
+	//Metodo ajax para el envío de los datos del formulario
 	$.ajax({
-		//Indicar la direccion url del archivo para el envio de los datos
+		//Indicar la dirección url del archivo para el envío de los datos
 		url: "../ajax/programaeducativo.php?op=guardaryeditar",
-		type: "POST", //Envio de datos mediante el tipo post
+		type: "POST", //Envío de datos mediante el tipo post
 		data: formData, //Enviar los datos almacenados de la variable formData
 		contentType: false,
 		processData: false,
 		success: function (datos) {
-			//Enviar un alert
+			//Enviara un mensaje de alerta
 			bootbox.alert(datos);
 			//Recargar la tabla de los registros
 			tabla.ajax.reload();
 		}
 	});
-	//Instanciar la funcion limpiar para vaciar el formulario
+	//Instanciar la función limpiar para vaciar el formulario
 	limpiar();
 }
 //Mostrar
-/*Declarar la funcion mostrar, para visulaizar los valores de un registro en un formulario, al recibir el id del registro, para obtener los datos*/
+/*Declarar la función mostrar, para visualizar los valores de un
+registro en un formulario, al recibir el id del registro,
+para obtener los datos*/
 function mostrar(idProgramaEducativo) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo y funcion se obtendran los datos*/
+	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	y función donde se obtendrán los datos*/
 	$.post("../ajax/programaeducativo.php?op=mostrar", {
-		idProgramaEducativo: idProgramaEducativo //indicar el parametro del id del registro
-	}, function (data, status) { //Funcion  donde obtener los valores del registro
-		data = JSON.parse(data); //Converitr los datos a un objeto javascript
-		//Declarar los inputs donde se devolveran los valores almacenados
+		idProgramaEducativo: idProgramaEducativo //indicar el parámetro del id del registro
+	}, function (data, status) { //Función  donde obtener los valores del registro
+		data = JSON.parse(data); //Convertirlos datos a un objeto JavaScript
+		//Declarar los inputs donde se devolverán los valores almacenados
 		$("#programasEducativos").val(data.programasEducativos);
 		$("#idProgramaEducativo").val(data.idProgramaEducativo);
 	})
 }
-//Instaciar la funcion init para ejecutar al inicio y las funcion dentro de esta
+//Instanciar la función init para ejecutar al inicio y las funciones dentro de esta
 init();

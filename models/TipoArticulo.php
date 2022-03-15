@@ -1,5 +1,5 @@
 <?php
-//Incluir la conexion a la base de datos
+//Incluir la conexión a la base de datos
 require "../config/conexion.php";
 
 Class TipoArticulo {
@@ -9,14 +9,13 @@ Class TipoArticulo {
 	}
 	//Metodo para insertar
 	/**
-	 *@author Sergio Gpe. Gonzalez Chavez
-	 *@public
-	 * Recibe como parametros la designacion del anaquel con su describcion para
-	 * crear el registro crear un registro de tipos de articulos disponibles, haciendo uso de una funcion SQL INSERT
-	 * @param  string $tipoArticulo Variable en la que se alamacena de forma textual el tipo de articulo
-	 * @return Retorna una ejecucion SQL
-	 */
-
+	*@author Sergio Gpe. González Chávez
+	*@public
+	* Recibe como parámetros la designación del anaquel con su descripción para
+	* crear el registro crear un registro de tipos de artículos disponibles, haciendo uso de una función SQL INSERT
+	* @param string $tipoArticulo Variable en la que se almacena de forma textual el tipo de articulo
+	* @return Retorna una ejecución SQL
+	*/
 	public function insertar( $tipoArticulo ) {
 		$sql = "INSERT INTO tipoarticulo(tipoArticulo)
 		VALUES ('$tipoArticulo')";
@@ -24,32 +23,31 @@ Class TipoArticulo {
 	}
 	//Metodo para editar el registro
 	/**
-	* @author Sergio Gpe. Gonzalez Chavez
+	* @author Sergio Gpe. González Chávez
 	* @public
-	* Metodos para editar el registro de la tabla,
-	* segun el valor del id del registro a modificar, junto con los parametros
-	* requeridos a modificar, mediante el uso de una funcion SQL UPDATE
-	* @param  integer $idAnaquel  Recibe el id del registro de la tabla anaquel para editar
-	* @param  string $anaquelNumero  Variable en la que se almacena de forma textual el numero del anaquel
-	* @param  string $descripcionAnaquel Variable en la que se almacena la descripcion o proposito del anaquel
-	* @return Retorna una ejecucion SQL
+	* Métodos para editar el registro de la tabla,
+	* según el valor del id del registro a modificar, junto con los parámetros
+	* requeridos a modificar, mediante el uso de una función SQL UPDATE
+	* @param integer $idAnaquel Recibe el id del registro de la tabla anaquel para editar
+	* @param string $anaquelNumero Variable en la que se almacena de forma textual el número del anaquel
+	* @param string $descripcionAnaquel Variable en la que se almacena la descripción o propósito del anaquel
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function editar( $idTipoArticulo, $tipoArticulo ){
 		$sql = "UPDATE tipoarticulo SET
 		tipoArticulo='$tipoArticulo'
 		WHERE idTipoArticulo='$idTipoArticulo'";
 		return ejecutarConsulta( $sql );
 	}
-	//Metodo que muestra un regirso en especifico
+	//Metodo que muestra un registro en especifico
 	/**
-	 * @author Sergio Gpe. Gonzalez Chavez
-	 * @public
-	 * Permite selecccionar los campos de un registro al recibir el id, del
-	 * registro como parametro y el uso de SELECT*FROM, para seleccionar toda la fila
-	 * @param  integer $idTipoArticulo Recibe el id del registro a mostrar sus datos
-	 * @return Retorna una ejecucion SQL
-	 */
+	* @author Sergio Gpe. González Chávez
+	* @public
+	* Permite seleccionar los campos de un registro al recibir el id, del
+	* registro como parámetro y el uso de SELECT*FROM, para seleccionar toda la fila
+	* @param integer $idTipoArticulo Recibe el id del registro a mostrar sus datos
+	* @return Retorna una ejecución SQL
+	*/
 	public function mostrar( $idTipoArticulo ) {
 		$sql = "SELECT * FROM tipoarticulo
 		WHERE idTipoArticulo='$idTipoArticulo'";
@@ -57,10 +55,10 @@ Class TipoArticulo {
 	}
 	//Metodo para enlistar los registros
 	/**
-	* @author Sergio Gpe. Gonzalez Chavez
+	* @author Sergio Gpe. González Chávez
 	* @public
 	* Selecciona todos los registros de la tabla haciendo uso de SELECT*FROM
-	* @return Retorna una ejecucion SQL
+	* @return Retorna una ejecución SQL
 	*/
 	public function listar() {
 		$sql = "SELECT * FROM tipoarticulo";
@@ -68,17 +66,15 @@ Class TipoArticulo {
 	}
 	//Metodo para seleccionar los registros
 	/**
-	* @author Sergio Gpe. Gonzalez Chavez
+	* @author Sergio Gpe. González Chávez
 	* @public
 	* Selecciona todos los registros de la tabla haciendo uso de SELECT*FROM
-	* para el ser usado con la herramiena selectpicker
-	* @return Retorna una ejecucion SQL
+	* para el ser usado con la herramienta selectpicker
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function selec() {
 		$sql = "SELECT * FROM tipoarticulo";
 		return ejecutarConsulta( $sql );
 	}
-
 }
 ?>

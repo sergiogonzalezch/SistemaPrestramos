@@ -1,29 +1,28 @@
 <?php
-//Incluir la conexion a la base de datos
+//Incluir la conexión a la base de datos
 require "../config/conexion.php";
 //Llmar la clase Bajar articulo para importar funciones
 require "BajaArticulo.php";
 Class Articulos {
 	//Constructor
-
 	public function _construct() {
 	}
 	//Metodo para insertar
 	/**
-	** @author Sergio Gpe. Gonzalez Chavez
+	** @author Sergio Gpe. González Chávez
 	* @public
-	* permite realizar un registro de un articulo nuevo al stock digital
-	* @param  string $etiqueta  parametro que recibe la designacion del equipo
-	* @param  date   $fechaAlta  parametro recibe la fecha de alta del equipo
-	* @param  string $numeroSerie parametro recibe el numero de serie del articulo
+	* permite realizar un registro de un artículo nuevo al stock digital
+	* @param  string $etiqueta  parámetro que recibe la designación del equipo
+	* @param  date   $fechaAlta  parámetro recibe la fecha de alta del equipo
+	* @param  string $numeroSerie parámetro recibe el número de serie del articulo
 	* @param  string $imagen   recibe la el nombre de un archivo de imagen
-	* @param  string $descripcion  recibe la descripcion del equipo
-	* @param  string $codigoBarras  recibe el codigo de barras
+	* @param  string $descripción  recibe la descripcion del equipo
+	* @param  string $codigoBarras  recibe el código de barras
 	* @param  string $disponibilidadArticulos recibe la disponibilidad del articulo
-	* @param  string $condicionArticulo recibe la condicion del articulo
-	* @param  integer $idAnaquel sirve como clave foranea para asignar un anaquel
-	* @param  integer $idTipoArticulo sirve como clave foranea para asignar el tipo del articulo
-	* @return Retorna una ejecucion SQL
+	* @param  string $condicionArticulo recibe la condición del articulo
+	* @param  integer $idAnaquel sirve como clave foránea para asignar un anaquel
+	* @param  integer $idTipoArticulo sirve como clave foránea para asignar el tipo del articulo
+	* @return Retorna una ejecución SQL
 	*/
 	public function insertar( $etiqueta,
 	$fechaAlta,
@@ -46,22 +45,22 @@ Class Articulos {
 		return ejecutarConsulta( $sql );
 	}
 	/**
-	 * @author Sergio Gpe. Gonzalez Chavez
-	 * @public
-	 * permite realizar un registro de un articulo nuevo al stock digital
-	 * @param  integer $idArticulo  Recibe el valor del registro a editar
-	 * @param  string $etiqueta  parametro que recibe la designacion del equipo
-	 * @param  date	  $fechaAlta  parametro recibe la fecha de alta del equipo
-	 * @param  string $numeroSerie parametro recibe el numero de serie del articulo
-	 * @param  string $imagen   recibe la el nombre de un archivo de imagen
-	 * @param  string $descripcion  recibe la descripcion del equipo
-	 * @param  string $codigoBarras  recibe el codigo de barras
-	 * @param  string $disponibilidadArticulos recibe la disponibilidad del articulo
-	 * @param  string $condicionArticulo recibe la condicion del articulo
-	 * @param  integer $idAnaquel sirve como clave foranea para asignar un anaquel
-	 * @param  integer $idTipoArticulo sirve como clave foranea para asignar el tipo
-	 * @return Retorna una ejecucion SQL
-	 */
+	* @author Sergio Gpe. González Chávez
+	* @public
+	* permite realizar un registro de un artículo nuevo al stock digital
+	* @param integer $idArticulo Recibe el valor del registro a editar
+	* @param string $etiqueta parámetro que recibe la designación del equipo
+	* @param date $fechaAlta parámetro recibe la fecha de alta del equipo
+	* @param string $numeroSerie parámetro recibe el número de serie del articulo
+	* @param string $imagen recibe la el nombre de un archivo de imagen
+	* @param string $descripcion recibe la descripción del equipo
+	* @param string $codigoBarras recibe el código de barras
+	* @param string $disponibilidadArticulos recibe la disponibilidad del articulo
+	* @param string $condicionArticulo recibe la condición del articulo
+	* @param integer $idAnaquel sirve como clave foránea para asignar un anaquel
+	* @param integer $idTipoArticulo sirve como clave foránea para asignar el tipo
+	* @return Retorna una ejecución SQL
+	*/
 	public function editar( $idArticulo, $etiqueta,
 	$numeroSerie, $imagen, $descripcion,
 	$codigoBarras, $disponibilidadArticulos,
@@ -76,14 +75,13 @@ Class Articulos {
 		return ejecutarConsulta( $sql );
 	}
 	//*Metodo para seleccionar un registro y mostrar sus datos*/
-
 	/**
-	 * @author Sergio Gpe. Gonzalez Chavez
+	 * @author Sergio Gpe. González Chávez
 	 * @public
-	 * Permite selecccionar los campos de un registro al recibir el id, del
-	 * registro como parametro y el uso de SELECT*FROM, para seleccionar toda la fila
+	 * Permite seleccionar los campos de un registro al recibir el id, del
+	 * registro como parámetro y el uso de SELECT*FROM, para seleccionar toda la fila
 	 * @param  integer $idArticulo Recibe el id del registro a mostras sus datos
-	 * @return Retorna una ejecucion SQL
+	 * @return Retorna una ejecución SQL
 	 */
 	public function mostrar( $idArticulo ) {
 		$sql = "SELECT * FROM articulos
@@ -92,37 +90,37 @@ Class Articulos {
 	}
 	//Metodo para realizar baja de  articulo
 	/**
-	 * @author Sergio Gpe. Gonzalez Chavez
+	 * @author Sergio Gpe. González Chávez
 	 * @public
-	 * Permite crear un registro de un articulo a dar de baja
-	 * @param  integer $idArticulo es el parametro que permite relacionar un registro de baja con el articulo en cuestion
-	 * @param  string $observacionBaja es la observacion o motivo de baja del articulo
-	 * @return Retorna una ejecucion SQL
+	 * Permite crear un registro de un artículo a dar de baja
+	 * @param  integer $idArticulo es el parámetro que permite relacionar un registro de baja con el artículo en cuestión
+	 * @param  string $observacionBaja es la observación o motivo de baja del artículo
+	 * @return Retorna una ejecución SQL
 	 */
 	public function baja( $idArticulo, $observacionBaja ) {
-		/*Actualizar la disponibilidad del articulo a baja
-		al recibir el id del articulo*/
+		/*Actualizar la disponibilidad del artículo a baja
+		al recibir el id del artículo*/
 		$sql = "UPDATE articulos SET
 		disponibilidadArticulos = 'Baja'
 		WHERE articulos.idArticulo ='$idArticulo'";
-		/*Tomar la fecha mdiante el comando date
-		y enviarlo mediante el formato año, mes y dia*/
+		/*Tomar la fecha mediante el comando date
+		y enviarlo mediante el formato año, mes y día*/
 		$fechaBaja = date( 'Y-m-d' );
-		/*LLamar la funcion insertar de la clase bajar articulo
+		/*Llamar la función insertar de la clase bajar artículo
 		para realizar el proceso de captura de datos de la baja*/
 		BajaArticulo::insertar( $fechaBaja, $observacionBaja, $idArticulo );
 		return ejecutarConsulta( $sql );
 	}
-	//Metodo para realizar la reactivacion
+	//Metodo para realizar la reactivación
 	/**
-	 * @author Sergio Gpe. Gonzalez Chavez
-	 * @public
-	 * Permite realizar la accion de reactivar el articulo
-	 * @param  integer $idArticulo id del registro del articulo para reactivar
-	 * @return Retorna una ejecucion SQL
-	 */
+	* @author Sergio Gpe. González Chávez
+	* @public
+	* Permite realizar la acción de reactivar el articulo
+	* @param integer $idArticulo id del registro del articulo para reactivar
+	* @return Retorna una ejecución SQL
+	*/
 	public function reactivar( $idArticulo ) {
-		//Camabiar la disponibilidad a disponible
+		//Cambiar la disponibilidad a disponible
 		$sql = "UPDATE articulos SET
 		disponibilidadArticulos = 'Disponible'
 		WHERE articulos.idArticulo ='$idArticulo'";
@@ -132,11 +130,11 @@ Class Articulos {
 	}
 	//Cambiar disponibilidad al hacer una entrega
 	/**
-	 *@author Sergio Gpe. Gonzalez Chavez
+	 *@author Sergio Gpe. González Chávez
 	 *@static
-	 * Permite cambiar la disponibilidad del articulo a NoDisponible cuando el articulo fue entregado
+	 * Permite cambiar la disponibilidad del artículo a "NoDisponible" cuando el articulo fue entregado
 	 * @param  integer $idArticulo a cambiar su disponibilidad
-	 * @return Retorna una ejecucion SQL
+	 * @return Retorna una ejecución SQL
 	 */
 	static function entregar( $idArticulo ) {
 		$sql = "UPDATE articulos SET
@@ -145,14 +143,14 @@ Class Articulos {
 		return ejecutarConsulta( $sql );
 	}
 
-	//Cambiar disponibilidad al hacer una devolucion
+	//Cambiar disponibilidad al hacer una devolución
 	/**
-	 *@author Sergio Gpe. Gonzalez Chavez
-	 *@static
-	 * Permite cambiar la disponibilidad del articulo a Disponible cuando el articulo fue devuelto
-	 * @param  integer $idArticulo a cambiar su disponibilidad
-	 * @return Retorna una ejecucion SQL
-	 */
+	*@author Sergio Gpe. González Chávez
+	*@static
+	* Permite cambiar la disponibilidad del artículo a Disponible cuando el articulo fue devuelto
+	* @param integer $idArticulo a cambiar su disponibilidad
+	* @return Retorna una ejecución SQL
+	*/
 	static function devolver( $idArticulo ) {
 		$sql = "UPDATE articulos SET
 		disponibilidadArticulos = 'Disponible'
@@ -161,13 +159,13 @@ Class Articulos {
 	}
 	//Metodo para enlistar los registros
 	/**
-	* @author Sergio Gpe. Gonzalez Chavez
+	* @author Sergio Gpe. González Chávez
 	* @public
 	* Selecciona todos los registros de la tabla haciendo uso de SELECT*FROM
 	* para este caso selecciona igual campos requeridos de otras tablas mediante
-	* el uso de un inner join que hace refernecia al valor de la clave foranea y
+	* el uso de un inner join que hace referencia al valor de la clave foránea y
 	* los campos deseados de las tablas relacionadas.
-	* @return Retorna una ejecucion SQL
+	* @return Retorna una ejecución SQL
 	*/
 	public function listar() {
 		$sql = "SELECT articulos.idArticulo AS Id,
@@ -188,16 +186,15 @@ Class Articulos {
 	}
 	//Metodo para enlistar los registros
 	/**
-	* @author Sergio Gpe. Gonzalez Chavez
+	* @author Sergio Gpe. González Chávez
 	* @public
 	* Selecciona todos los registros de la tabla haciendo uso de SELECT*FROM
 	* para este caso selecciona igual campos requeridos de otras tablas mediante
-	* el uso de un inner join que hace refernecia al valor de la clave foranea y
+	* el uso de un inner join que hace referencia al valor de la clave foránea y
 	* los campos deseados de las tablas relacionadas.
-	* Esta funcion permite ser usada para desplgegar los datos en un modal para realizar la asignacion de equipos al prestamo.
-	* @return Retorna una ejecucion SQL
+	* Esta función permite ser usada para desplegar los datos en un modal para realizar la asignación de equipos al préstamo.
+	* @return Retorna una ejecución SQL
 	*/
-
 	public function listarDisponibles() {
 		$sql = "SELECT articulos.idArticulo AS Id,
 		tipoArticulo.tipoArticulo AS TipoArticulo,

@@ -12,7 +12,7 @@ require 'superior.php';
 			<div class="row">
 				<div class="col-lg-9 col-md-8">
 					<h1 class="font-weight-bold mb-0">Consultas condicion de las devoluciones</h1>
-					<p>Consulta de articulos devueltos y condciones de devolucion </p>
+					<p>Consulta de articulos devueltos y  condiciones  de devolucion </p>
 				</div>
 
 			</div>

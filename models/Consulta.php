@@ -1,5 +1,5 @@
 <?php
-//Incluir la conexion a la base de datos
+//Incluir la conexión a la base de datos
 require "../config/conexion.php";
 Class Consulta {
 	//Constructor
@@ -10,18 +10,17 @@ Class Consulta {
 	/*Consulta prestamos usuarios: permite realizar la consulta de
 	los servicios atendidos por los usuarios*/
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Funcion que permite realizar consulta entre la relacion del usuario
+	* Función que permite realizar consulta entre la relación del usuario
 	* y el servicio realizado
-	* sea una entrega o una devolucion a un prestamo correspondiente,
+	* sea una entrega o una devolución a un préstamo correspondiente,
 	* filtrando los datos por un rango de fecha
-	* al recibir valores del tipo date mediante sus dos paramentros.
-	* @param  date $fechaInicio parametro que recibe un dato de fecha inicial
-	* @param  date $fechaFin   parametro que recibe un dato de fecha final
-	* @return ejecucion SQL, con datos de la consulta.
+	* al recibir valores del tipo date mediante sus dos parámetros.
+	* @param  date $fechaInicio parámetro que recibe un dato de fecha inicial
+	* @param  date $fechaFin parámetro que recibe un dato de fecha final
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function consultaServicios( $fechaInicio, $fechaFin ) {
 		$sql = "SELECT
 		DATE_FORMAT(servicio.fechaServicio,'%Y','es_MX')Año,
@@ -41,20 +40,19 @@ Class Consulta {
 		return ejecutarConsulta( $sql );
 	}
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Articulos Entregados: realiza una consulta del total de articulos entregados
+	* Artículos Entregados: realiza una consulta del total de artículos entregados
 	* durante un rango de fechas y agruparlos por el tipo de articulo.
-	* Ademas de filtrar los datos mediante rango de fechas.
-	* DATE_FORMAT: es una funcion SQL, que permite aplicar un formato de fecha tradicional
+	* Además de filtrar los datos mediante rango de fechas.
+	* DATE_FORMAT: es una función SQL, que permite aplicar un formato de fecha tradicional
 	* a campos o valores de tipo date.
-	* %Y para año, %M para mes, %D para establecer el dia y es_MX
-	* paraestablecer  el formato en español mexico.
-	* @param  date $fechaInicio parametro que recibe un dato de fecha inicial
-	* @param  date $fechaFin   parametro que recibe un dato de fecha final
-	* @return ejecucion SQL, con datos de la consulta.
+	* %Y para año, %M para mes, %D para establecer el día y es_MX
+	* para establecer el formato en español México.
+	* @param date $fechaInicio parámetro que recibe un dato de fecha inicial
+	* @param date $fechaFin parámetro que recibe un dato de fecha final
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function consultaEntregas( $fechaInicio, $fechaFin ) {
 		$sql = "SELECT DATE_FORMAT( articulosprestamos.fechaEntrega,'%Y','es_MX')Año,
 		DATE_FORMAT( articulosprestamos.fechaEntrega,'%M','es_MX')Mes,
@@ -69,20 +67,19 @@ Class Consulta {
 		return ejecutarConsulta( $sql );
 	}
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Prestamos edificio area: realiza una consulta y un total
-	* de los prestamos realizados segun el edificio y tipo de area de uso, por mes.
-	* Ademas de filtrar los datos mediante rango de fechas.
-	* DATE_FORMAT: es una funcion SQL, que permite
+	* Prestamos edificio área: realiza una consulta y un total
+	* de los prestamos realizados según el edificio y tipo de área de uso, por mes.
+	* Además de filtrar los datos mediante rango de fechas.
+	* DATE_FORMAT: es una función SQL, que permite
 	* aplicar un formato de fecha tradicional a campos o valores de tipo date.
-	* %Y para año, %M para mes, %D para establecer el dia y es_MX
-	* paraestablecer  el formato en español mexico.
-	* @param  date $fechaInicio parametro que recibe un dato de fecha inicial
-	* @param  date $fechaFin   parametro que recibe un dato de fecha final
-	* @return ejecucion SQL, con datos de la consulta.
+	* %Y para año, %M para mes, %D para establecer el día y es_MX
+	* para establecer el formato en español México.
+	* @param date $fechaInicio parámetro que recibe un dato de fecha inicial
+	* @param date $fechaFin parámetro que recibe un dato de fecha final
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function consultaUbicaciones( $fechaInicio, $fechaFin ) {
 		$sql = "SELECT DATE_FORMAT( prestamos.fechaPrestamo,'%Y','es_MX')Año,
 		DATE_FORMAT( prestamos.fechaPrestamo,'%M','es_MX')Mes,
@@ -99,23 +96,22 @@ Class Consulta {
 		ORDER BY prestamos.fechaPrestamo DESC";
 		return ejecutarConsulta( $sql );
 	}
-	/*Articulos devueltos condicion: realizar una consuta del
-	total de articulos pertados y condciones en que fueron entregados*/
+	/*Artículos devueltos condición: realizar una consulta del
+	total, de artículos prestados y condiciones en que fueron entregados*/
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Articulos devueltos condicion: realizar una consuta del
-	* total de articulos pertados y condciones en que fueron devueltos por mes.
-	* Ademas de filtrar los datos mediante rango de fechas.
-	* DATE_FORMAT: es una funcion SQL, que permite aplicar un formato de fecha tradicional
+	* Articulos devueltos condición: realizar una consulta del
+	* total de articulos prestados y condiciones en que fueron devueltos por mes.
+	* Además de filtrar los datos mediante rango de fechas.
+	* DATE_FORMAT: es una función SQL, que permite aplicar un formato de fecha tradicional
 	* a campos o valores de tipo date.
-	* %Y para año, %M para mes, %D para establecer el dia y es_MX paraestablecer
-	* el formato en español mexico.
-	* @param  date $fechaInicio parametro que recibe un dato de fecha inicial
-	* @param  date $fechaFin   parametro que recibe un dato de fecha final
-	* @return ejecucion SQL, con datos de la consulta.
+	* %Y para año, %M para mes, %D para establecer el día y es_MX para establecer
+	* el formato en español México.
+	* @param  date $fechaInicio parámetro que recibe un dato de fecha inicial
+	* @param  date $fechaFin   parámetro que recibe un dato de fecha final
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function consultaDevolucion( $fechaInicio, $fechaFin ) {
 		$sql = "SELECT DATE_FORMAT( articulosprestamos.fechaDevolucion,'%Y','es_MX')Año,
 		DATE_FORMAT( articulosprestamos.fechaDevolucion,'%M','es_MX')Mes,
@@ -132,24 +128,23 @@ Class Consulta {
 		tipoArticulo.tipoArticulo, articulosprestamos.devuelto;";
 		return ejecutarConsulta( $sql );
 	}
-	//Consulta prestamos por clientes
+	//Consulta préstamos por clientes
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
 	* Consulta que contabiliza, los prestamos realizados por un cliente,
 	* filtrando los datos por un rango de fecha
-	* al recibir valores del tipo date mediante sus dos paramentros.
-	* @param  date $fechaInicio parametro que recibe un dato de fecha inicial
-	* @param  date $fechaFin   parametro que recibe un dato de fecha final
-	* @return ejecucion SQL, con datos de la consulta.
+	* al recibir valores del tipo date mediante sus dos parámetros.
+	* @param date $fechaInicio parámetro que recibe un dato de fecha inicial
+	* @param date $fechaFin parámetro que recibe un dato de fecha final
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function consultaPrestarios( $fechaInicio, $fechaFin ) {
 		$sql = "SELECT DATE_FORMAT(prestamos.fechaPrestamo,'%Y','es_MX')Año,
 		DATE_FORMAT(prestamos.fechaPrestamo,'%M','es_MX')Mes,
 		clientes.matricula AS MatriculaCliente,
 		CONCAT(datosgenerales.nombres,' ', datosgenerales.primerApellido,
-		' ', datosgenerales.segundoApellido)AS Nombre,
+		' ', datosgenerales.segúndoApellido)AS Nombre,
 		tipoarticulo.tipoArticulo AS Tipo,
 		Count(articulos.etiqueta) AS NoArticulos
 		FROM ((datosgenerales INNER JOIN clientes
@@ -166,15 +161,14 @@ Class Consulta {
 		return ejecutarConsulta( $sql );
 	}
 	//FUNCIONES PARA ESTADISTICAS
-	//Funciones para estadisticas del escritorio
+	//Funciones para estadísticas del escritorio
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta para la estadistica de condciones devuelto, contabilizando
-	* el total de condiciones segun el tipo de condicion
-	* @return ejecucion SQL, con datos de la consulta.
+	* Consulta para la estadística de condiciones devuelto, contabilizando
+	* el total de condiciones según el tipo de condición
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function estadisticoCondicionDevueltoMes() {
 		$sql = "SELECT  Count(articulos.etiqueta)
 		AS Total, articulosprestamos.condicionDevolucion
@@ -187,15 +181,14 @@ Class Consulta {
 		GROUP BY articulosprestamos.condicionDevolucion";
 		return ejecutarConsulta( $sql );
 	}
-	//Estadistico total prestamos
+	//Estadístico total prestamos
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Total de prestamos permite contar el total de articulos prestados
-	* segun su tipo, esta conuslta selecciona los datos del mes actual
-	* @return ejecucion SQL, con datos de la estadistica.
+	* Total de préstamos permite contar el total de artículos prestados
+	* según su tipo, esta consulta selecciona los datos del mes actual
+	* @return ejecución SQL, con datos de la estadística.
 	*/
-
 	public function estadisticoArticulosMes() {
 		$sql = "SELECT Count(prestamos.folio) AS TotalPrestamos,
 		tipoarticulo.tipoArticulo AS Tipo
@@ -208,14 +201,13 @@ Class Consulta {
 		GROUP BY tipoarticulo.tipoArticulo;";
 		return ejecutarConsulta( $sql );
 	}
-	//Estadistico Ubicacion
+	//Estadístico Ubicación
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	*Edificio y area, permite realizar un consulta del total de prestamos por edificion en base al mes actual
-	* @return ejecucion SQL, con datos de la estadistica.
+	*Edificio y área, permite realizar una consulta del total de préstamos por edificio en base al mes actual
+	* @return ejecución SQL, con datos de la estadística.
 	*/
-
 	public function estadisticoUbicacion() {
 		$sql = "SELECT Prestamos.edificio,  Count(Prestamos.folio)AS Total
 		FROM Prestamos
@@ -225,13 +217,12 @@ Class Consulta {
 	}
 	//Entregas por usuario
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Esta estadistica filtra los usuarios que atendieron prestamos en el mes
+	* Esta estadística filtra los usuarios que atendieron prestamos en el mes
 	* haciendo el servicio de entrega de equipos y contabilizando el total por usuario.
-	* @return ejecucion SQL, con datos de la estadistica.
+	* @return ejecución SQL, con datos de la estadística.
 	*/
-
 	public function estadisticoEntrega() {
 		$sql = "SELECT usuarios.aliasUsuario, servicio.tipoServicio,
 		COUNT( prestamos.folio) as total FROM usuarios
@@ -245,13 +236,12 @@ Class Consulta {
 	}
 	//Devoluciones por usuario
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Esta estadistica filtra los usuarios que atendieron prestamos en el mes
-	* haciendo el servicio de devolucion de equipos y contabilizando el total por usuario.
-	* @return ejecucion SQL, con datos de la estadistica.
+	* Esta estadística filtra los usuarios que atendieron prestamos en el mes
+	* haciendo el servicio de devolución de equipos y contabilizando el total por usuario.
+	* @return ejecución SQL, con datos de la estadística.
 	*/
-
 	public function estadisticoDevolucion() {
 		$sql = "SELECT usuarios.aliasUsuario, servicio.tipoServicio,
 		COUNT( prestamos.folio) as total FROM usuarios INNER JOIN
@@ -263,14 +253,13 @@ Class Consulta {
 		GROUP BY usuarios.aliasUsuario, servicio.tipoServicio;";
 		return ejecutarConsulta( $sql );
 	}
-	//Estadistica totales
+	//Estadística totales
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Estadistica que contabiliza el total de prestamos durante doce mese ( año )por mes
-	* @return ejecucion SQL, con datos de la estadistica.
+	* Estadística que contabiliza el total de préstamos durante los doce meses del año
+	* @return ejecución SQL, con datos de la estadística.
 	*/
-
 	public function estadisticoTotales() {
 		$sql = "SELECT DATE_FORMAT(prestamos.fechaPrestamo,'%M','es_MX') AS Fecha,
 		COUNT(prestamos.folio) AS EntregasTotales FROM prestamos
@@ -279,16 +268,14 @@ Class Consulta {
 		ORDER BY prestamos.fechaPrestamo ASC LIMIT 0,12;";
 		return ejecutarConsulta( $sql );
 	}
-
-	//Funciones para informacion, permite proyectar datos rapidos de los prestamos por dia.
+	//Funciones para información, permite proyectar datos rápidos de los prástamos por día.
 	//Prestamos totales en el año
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta rapido de lo prestamos realizados durante el año
-	* @return ejecucion SQL, con datos de la cpnsulta rapida.
+	* Consulta rápida de lo prestamos realizados durante el año
+	* @return ejecución SQL, con datos de la consulta rápida.
 	*/
-
 	public function totalAnual() {
 		$sql = "SELECT
 		COUNT(prestamos.folio) AS TotalAnual FROM prestamos
@@ -297,12 +284,11 @@ Class Consulta {
 	}
 	//Prestamos entregados
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta rapido de lo prestamos entregados durante el dia
-	* @return ejecucion SQL, con datos de la cpnsulta rapida.
+	* Consulta rápida de los préstamos entregados durante el día
+	* @return ejecución SQL, con datos de la consulta rápida.
 	*/
-
 	public function prestamosEntregados() {
 		$sql = "SELECT IFNULL(COUNT(prestamos.folio),0 )AS TotalEntregas
 		FROM prestamos WHERE prestamos.fechaPrestamo=CURRENT_DATE;";
@@ -310,27 +296,24 @@ Class Consulta {
 	}
 	//Prestamos cerrados
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta rapido de lo prestamos devueltos durante el dia
-	* @return ejecucion SQL, con datos de la estadistica.
+	* Consulta rápida de los préstamos devueltos durante el día
+	* @return ejecución SQL, con datos de la consulta rápida.
 	*/
-
 	public function prestamosCerrados() {
 		$sql = "SELECT IFNULL(COUNT(prestamos.folio),0 )AS TotalCerrados
 		FROM prestamos WHERE prestamos.estado='Cerrado'
 		AND prestamos.fechaCierre=CURRENT_DATE";
 		return ejecutarConsulta( $sql );
 	}
-	//Consulta rapido de lo articulos entregados durante el dia
+	//Consulta rápida de lo artículos entregados durante el día
 	//Entregados
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* [[Description]]
-	* @return ejecucion SQL, con datos de la estadistica.
+	* @return ejecución SQL, con datos de la estadística.
 	*/
-
 	public function articulosEntregados() {
 		$sql = "SELECT IFNULL(COUNT(articulosprestamos.idArticulo),0 )
 		AS EntregasTotales
@@ -338,13 +321,12 @@ Class Consulta {
 		WHERE articulosprestamos.fechaEntrega=CURRENT_DATE";
 		return ejecutarConsulta( $sql );
 	}
-	//Consulta rapido de lo articulos devueltos durante el dia
+	//Consulta rápida de lo artículos devueltos durante el día
 	//Devueltos
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* [[Description]]
-	* @return ejecucion SQL, con datos de la estadistica.
+	* @return ejecución SQL, con datos de la estadística.
 	*/
 
 	public function articulosDevueltos() {
@@ -357,15 +339,14 @@ Class Consulta {
 	}
 	//Consultas para reportes
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
 	* Consulta para el reporte de los prestamos realizados que recibe
-	* como parametros un rago de fechas definido por las variables $fechaInicio y $fechaFin
-	* @param  date $fechaInicio parametro que recibe un dato de fecha inicial
-	* @param  date $fechaFin   parametro que recibe un dato de fecha final
-	* @return ejecucion SQL, con datos de la consulta.
+	* como parámetros un rango de fechas definido por las variables $fechaInicio y $fechaFin
+	* @param  date $fechaInicio parámetro que recibe un dato de fecha inicial
+	* @param  date $fechaFin   parámetro que recibe un dato de fecha final
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function reporte( $fechaInicio, $fechaFin ) {
 		$sql = "SELECT prestamos.folio AS NumFolio,
 		Year(fechaPrestamo) AS Año,
@@ -403,16 +384,15 @@ Class Consulta {
 	}
 	//Cabecera
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta para el reporte indivual del prestamo realizado donde recolecta
-	* los datos para la cabecera de la tabla prestamos, datos del prestamo realizo
-	* como cliente, ubicacion fecha de realizacion y cierre
-	* @param  integer $idPrestamo parametro que recibe el id del prestamo para
-	*  desplegar todos los datos relacionados al registro del prestamo.
-	* @return ejecucion SQL, con datos de la consulta.
+	* Consulta para el reporte individual del préstamo realizado donde recolecta
+	* los datos para la cabecera de la tabla préstamos, datos del préstamo realizo
+	* como cliente, ubicación fecha de realización y cierre
+	* @param  integer $idPrestamo parámetro que recibe el id del préstamo para
+	*  desplegar todos los datos relacionados al registro del préstamo.
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function cabecera( $idPrestamo ) {
 		$sql = "SELECT prestamos.folio AS NumFolio,
 		prestamos.fechaPrestamo AS Fecha,
@@ -445,16 +425,15 @@ Class Consulta {
 	}
 	//Cuerpo
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta que en lista los datos de los articulos prestados
+	* Consulta que en lista los datos de los artículos prestados
 	* para el reporte y ser insertados posteriormente en una tabla
-	* @param  integer $idPrestamo parametro que recibe el id del
-	* prestamo para desplgegar los registro que cotengar
-	* como clave foranea el valor del parametro establecido.
-	* @return ejecucion SQL, con datos de la consulta.
+	* @param  integer $idPrestamo parámetro que recibe el id del
+	* prestamo para desplegar los registros que contengan
+	* como clave foránea el valor del parámetro establecido.
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function cuerpo( $idPrestamo ) {
 		$sql = "SELECT articulosPrestamos.idArticuloPrestamo AS Identificador,
 		articulos.etiqueta AS Articulo, articulosprestamos.condicionEntrega AS
@@ -469,15 +448,14 @@ Class Consulta {
 	}
 	//Servicio entrega
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta que permite obtener el usuario que atendido
-	* el prestamo como servicio de entrega
-	* @param  integer $idPrestamo, parametro que desplega informacion
-	* relacionado a su clave foranea establecido por el id del prestamo.
-	* @return ejecucion SQL, con datos de la consulta.
+	* Consulta que permite obtener el usuario que atendió
+	* el préstamo como servicio de entrega
+	* @param  integer $idPrestamo, parámetro que despliega información
+	* relacionado a su clave foránea establecido por el id del préstamo.
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function servicioEntrega( $idPrestamo ) {
 		$sql = "SELECT usuarios.aliasUsuario AS Alias ,
 		servicio.tipoServicio AS Servicio,
@@ -488,16 +466,15 @@ Class Consulta {
 		AND tipoServicio='Entrega'";
 		return ejecutarConsulta( $sql );
 	}
-	//Servicio devolucion
+	//Servicio devolución
 	/**
-	*@author Sergio Gpe. Gonzalez Chavez
+	*@author Sergio Gpe. González Chávez
 	*@public
-	* Consulta que permite obtener el usuario que atendido el prestamo como servicio de devolucion
-	* @param  integer $idPrestamo, parametro que desplega informacion relacionado a su
-	* clave foranea establecido por el id del prestamo.
-	* @return ejecucion SQL, con datos de la consulta.
+	* Consulta que permite obtener el usuario que atendió el préstamo como servicio de devolución
+	* @param integer $idPrestamo, parámetro que despliega información relacionado a su
+	* clave foránea establecido por el id del préstamo.
+	* @return ejecución SQL, con datos de la consulta.
 	*/
-
 	public function servicioDevolucion( $idPrestamo ) {
 	$sql = "SELECT usuarios.aliasUsuario AS Alias ,
 		servicio.tipoServicio AS Servicio,

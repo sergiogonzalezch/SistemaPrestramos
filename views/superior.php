@@ -67,7 +67,7 @@ session_start();
 						<a class="d-block p-3 text-ligth" href="consultaprestarios.php"><i class="fas fa-caret-right mr-2"></i>Prestamos por solicitante</a>
 
 					</div>
-					<a class="btn text-ligth" data-toggle="collapse" href="#estadisticas-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-bar mr-2"></i>Estadisticas</a>
+					<a class="btn text-ligth" data-toggle="collapse" href="#estadisticas-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-bar mr-2"></i>Estadísticas</a>
 					<div id="estadisticas-collapse" class="collapse">
 						<a class="d-block p-3 text-ligth" href="estadisticaubicacion.php"><i class="fas fa-caret-right mr-2"></i>Total por edificio</a>
 						<a class="d-block p-3 text-ligth" href="estadisticaservicios.php"><i class="fas fa-caret-right mr-2"></i>Totales de servicios</a>

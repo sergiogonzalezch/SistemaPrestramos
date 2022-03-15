@@ -29,7 +29,7 @@ $devuelto=0;
   $rsptadevueltos = $consulta->articulosDevueltos();
   $registrodevueltos=$rsptadevueltos->fetch_object();
   $devuelto=$registrodevueltos->DevueltosTotales+$devuelto;
-//Estadistico 1
+//Estadístico 1
 	$total=$consulta->estadisticoArticulosMes();
 	$numArticulos='';
 	$tipoArticulo='';
@@ -39,7 +39,7 @@ $devuelto=0;
 	}
 	$numArticulos=substr($numArticulos,0,-1);
 	$tipoArticulo=substr($tipoArticulo,0,-1);
-// Estadistico 2
+// Estadístico 2
 	$condiciones=$consulta->estadisticoCondicionDevueltoMes();
 	$condicion='';
 	$condicionCuenta='';
@@ -57,7 +57,7 @@ $devuelto=0;
 			<div class="row">
 				<div class="col-lg-9 col-md-8">
 					<h1 class="font-weight-bold mb-0">Escritorio</h1>
-					<p>Pagina de datos y estadisticas rapidas</p>
+					<p>Pagina de datos y estadísticas rápidas</p>
 				</div>
 				<!--
 					<button class="btn btn-primary w-100 align-self-center">Descargar reporte</button>

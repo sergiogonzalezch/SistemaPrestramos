@@ -55,7 +55,7 @@ require 'superior.php';
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">LLenar los campos</h5>
+				<h5 class="modal-title">Llenar los campos</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="limpiar()">
 					<i class="fas fa-times"></i>
 				</button>

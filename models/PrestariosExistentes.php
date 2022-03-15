@@ -1,23 +1,23 @@
 <?php
-//Incluir la conexion a la base de datos
+//Incluir la conexión a la base de datos
 require "../config/conexion.php";
 Class PrestariosExistentes {
 	//Constructor
 
 	public function _construct() {
 	}
-	//Metodos para insertar datos a la tabla
+	//Métodos para insertar datos a la tabla
 	/**
-	 ** @author Sergio Gpe. Gonzalez Chavez
+	 ** @author Sergio Gpe. González Chávez
 	 * @public
-	 * Permite crear un registro de un solicitante nuevo en base a un personal existente , relacionandolo
+	 * Permite crear un registro de un solicitante nuevo en base a un personal existente, relacionándolo
 	 * con campos de la tabla datos generales, programa educativo y el cargo.
-	 * siendo el unico campo propio la matricula del cliente ademas del id del registro del cliente.
-	 * @param  integer $matricula  parametro que recive la matricula asigna del cliente.
-	 * @param  integer $idDatosGenerales campo que sirve como clave foranea que relacion el registro id datos generales con el registro del solicitante
-	 * @param  integer $idProgramaEducativo campo que sirve como clave foranea que relacion el registro id programa educativo con el registro del cliente
-	 * @param  integer $idCargo campo que sirve como clave foranea que relacion el registro id cargo con el registro del cliente
-	 * @return Retorna una ejecucion SQL
+	 * siendo el único campo propio la matricula del cliente además del id del registro del cliente.
+	 * @param  integer $matricula  parámetro que recive la matricula asigna del cliente.
+	 * @param  integer $idDatosGenerales campo que sirve como clave foránea que relación el registro id datos generales con el registro del solicitante
+	 * @param  integer $idProgramaEducativo campo que sirve como clave foránea que relación el registro id programa educativo con el registro del cliente
+	 * @param  integer $idCargo campo que sirve como clave foránea que relación el registro id cargo con el registro del cliente
+	 * @return Retorna una ejecución SQL
 	 */
 	public function insertar( $matricula,
 	$idDatosGenerales,

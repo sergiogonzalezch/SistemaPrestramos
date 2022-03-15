@@ -30,8 +30,8 @@ while($registro=$respuesta->fetch_object()){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9 col-md-8">
-					<h1 class="font-weight-bold mb-0">Estadisticas de prestamos por meses</h1>
-					<p>Pagina de estadisticas de prestamos durante por mes durante un año</p>
+					<h1 class="font-weight-bold mb-0">Estadísticas de prestamos por meses</h1>
+					<p>Pagina de estadísticas de prestamos durante por mes durante un año</p>
 				</div>
 				<div class="col-lg-3 col-md-3 d-flex stat my-3">
 					<div class="mx-auto">

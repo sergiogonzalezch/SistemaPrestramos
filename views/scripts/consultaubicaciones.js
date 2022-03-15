@@ -1,22 +1,27 @@
-/*Crear variable tabla para realiar el procedimiento de enlistar los registros*/
+/*Crear variable tabla para realizar el
+procedimiento de enlistar los registros*/
 var tabla;
 //Init
-//Funcion que se ejecuta al inicio
+//Función que se ejecuta al inicio
 function init() {
-	/*Llamar a la funcion listar se ejecuta al incio para visualizar todos los registros en una tabla de datatables*/
+	/*Llamar a la función listar se ejecuta al
+	inicio para visualizar todos los registros en
+	una tabla de datatables*/
 	listar();
-	//Establecer el parametro fechaInicio para el rango de fechas
+	//Establecer el parámetro fechaInicio para el rango de fechas
 	$("#fechaInicio").change(listar);
-	//Establecer el parametro fechaFin para el rango de fechas
+	//Establecer el parámetro fechaFin para el rango de fechas
 	$("#fechaFin").change(listar);
 }
 //Listar
-/*Declarar funcion listar que permite visualizar los registro sde un a consulta*/
+/*Declarar función listar que permite visualizar los registros de una consulta*/
 function listar() {
-	//Obtener  el valor de la fecha de incio
+	//Obtener  el valor de la fecha de inicio
 	var fechaInicio = $("#fechaInicio").val();
 	//Establecer la fecha fin
 	var fechaFin = $("#fechaFin").val();
+	/*Establecer el elemento HTML de la tabla en la variable
+	global mediante el id de la tabla (#tbllistado)*/
 	tabla = $('#tbllistado').dataTable({
 		"aProcessing": true, //Activar el procesamiento del datatables
 		"aServerSide": true, //Paginación y filtrado realizados por el servidor
@@ -31,7 +36,7 @@ function listar() {
 		/*Mediante operaciones ajax recibir los valores para enlistar los registros de la consulta*/
 		"ajax": {
 			url: '../ajax/consulta.php?op=consultaUbicaciones',
-			//Enviar los parametros paraestablecer  el rango de fechas
+			//Enviar los parámetros para establecer el rango de fechas
 			data: {
 				fechaInicio: fechaInicio,
 				fechaFin: fechaFin
@@ -42,7 +47,7 @@ function listar() {
 				console.log(e.responseText);
 			}
 		},
-		//Desplegar la informacion del data tables en español
+		//Desplegar la información del datatables en español
 		"autoWidth": false,
 		"language": {
 			"lengthMenu": "Mostrando _MENU_ registros por página",
@@ -58,12 +63,12 @@ function listar() {
 				"previous": "Anterior"
 			}
 		},
-		//Paginacion delos resultados del datatable
+		//Paginación de los resultados del datatables
 		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 		"bDestroy": true,
 		"iDisplayLength": 25, //Paginación
 		"order": [[0, "desc"]] //Ordenar (columna,orden)
 	}).DataTable();
 }
-//Instaciar la funcion init para ejecutar al inicio y las funcion dentro de esta
+//Instanciar la función init para ejecutar al inicio y las funciones dentro de esta
 init();

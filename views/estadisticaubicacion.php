@@ -25,8 +25,8 @@ while($registro=$ubicacion->fetch_object()){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9 col-md-8">
-					<h1 class="font-weight-bold mb-0">Estadisticas de prestamos x edificios</h1>
-					<p>Pagina de estadisticas</p>
+					<h1 class="font-weight-bold mb-0">Estadísticas de prestamos x edificios</h1>
+					<p>Pagina de estadísticas</p>
 				</div>
 			</div>
 		</div>

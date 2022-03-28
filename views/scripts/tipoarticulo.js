@@ -101,7 +101,7 @@ function guardaryeditar() {
 registro en un formulario, al recibir el id del registro,
 para obtener los datos*/
 function mostrar(idTipoArticulo) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo
 	y función donde se obtendrán los datos*/
 	$.post("../ajax/tipoarticulo.php?op=mostrar", {
 		idTipoArticulo: idTipoArticulo //indicar el parámetro del id del registro

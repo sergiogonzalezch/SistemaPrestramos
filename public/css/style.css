@@ -1,31 +1,58 @@
+/*Se establcen las variables para
+colores primerio
+claro y gris*/
 :root {
 	--primary: #1B365D;
 	--ligth: #ffffff;
 	--grey: #e5e5e5;
 }
 
+/*Se establce el color
+de cuerpo del sistema*/
 body {
+	/*Se el color de cuerpo sera
+	el color primario*/
 	color: var(--primary);
+	/*Se establce el tamaño de la
+	fuente a 300 pixeles*/
 	font-weight: 300;
 }
 
+/*Los elementos con la clase bg-primary
+tendran el color de la variable primario
+donde el valor sera importante dando
+prioridad al estilo*/
 .bg-primary {
 	background-color: var(--primary) !important;
 }
 
+/*Los elementos con la clase bg-ligth
+tendran el color de la variable primario
+donde el valor sera importante dando
+prioridad al estilo*/
 .bg-ligth {
 	background-color: var(--ligth) !important;
 }
 
+/*Los elementos con la clase bg-grey
+tendran el color de la variable primario
+donde el valor sera importante dando
+prioridad al estilo*/
 .bg-grey {
 	background-color: var(--grey) !important;
 }
 
+/*A los elementos a de la clase menu al
+hacer una accion de pasar el cursor el
+color del enlace cambiara donde el
+valor sera importante dando
+prioridad al estilo*/
 .menu a:hover {
 	text-decoration: none;
 	color: #ffba00 !important;
 }
 
+/*Se establce una clase de texto claro*/
 .text-ligth {
 	color: var(--ligth) !important;
 }
@@ -34,6 +61,7 @@ body {
 	border-right: 1px solid var(--grey) !important;
 }
 
+/*Dimensiones del sidebar*/
 #sidebar-container {
 	min-height: 100vh;
 }
@@ -46,6 +74,8 @@ body {
 	width: 12rem;
 }
 
+/*Si el tamaño de la pantalla es menor a 768 pixeles
+el sidebar se ocultara*/
 @media (max-width: 768px) {
 	#sidebar-container {
 		display: none;
@@ -56,7 +86,7 @@ body {
 	}
 }
 
+/*Se agrega un paddin al contenedor*/
 #content {
-
 	padding-bottom: 5rem;
 }

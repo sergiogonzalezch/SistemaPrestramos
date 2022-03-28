@@ -1,9 +1,13 @@
+/*Establcer el ancho de documento html
+y del body*/
 html,
 body {
 	height: 100%;
 }
 
+/*Estructura del body*/
 body {
+	/*Alineacion de elemento*/
 	display: -ms-flexbox;
 	display: -webkit-box;
 	display: flex;
@@ -12,17 +16,21 @@ body {
 	align-items: center;
 	padding-top: 40px;
 	padding-bottom: 40px;
+	/*Fondo degradado*/
 	background: rgb(27, 54, 93);
 	background: linear-gradient(330deg, rgba(27, 54, 93, 1) 0%, rgba(54, 91, 145, 1) 40%, rgba(229, 229, 229, 1) 100%);
 }
 
 .form-signin {
+	/*Dimensiones del formulario del login*/
 	width: 100%;
 	max-width: 330px;
 	padding: 15px;
 	margin: auto;
 }
 
+/*Dimensiones y estructur de
+los elemento dentro del formulario*/
 .form-signin .form-control {
 	position: relative;
 	-webkit-box-sizing: border-box;
@@ -37,6 +45,7 @@ body {
 
 }
 
+/*Agregar margen inferior a los inputs*/
 .form-signin input {
 	margin-bottom: 10px;
 }

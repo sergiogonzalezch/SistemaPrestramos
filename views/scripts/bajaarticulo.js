@@ -6,45 +6,17 @@ var tabla;
 function init() {
 	/*Llamar función mostrar el formulario con el
 	valor de su parámetro como false para no visualizarlo*/
-	mostrarform(false);
-	/*Llamar la función listar se ejecuta al inicio para
+	/*mostrarform(false);
+	Llamar la función listar se ejecuta al inicio para
 	visualizar todos los registros en una tabla de datatables*/
 	listar();
-	//Función para subir los datos del formulario y almacenarlos
-	$("#formulario").on("submit", function (e) {
-		//Llamar al metodo guardar
-		guardaryeditar(e);
-	});
 }
 //Limpiar
 //Declarar la función limpiar para vaciar los campos del formulario
 function limpiar() {
 	//Declarar los campos a limpiar
 	$("#idBaja").val("");
-	$("#fechaBaja").val("");
 	$("#observacionBaja").val("");
-	$("#idArticulo").val("");
-}
-//Mostar formulario
-//Declarar la función para visualizar los objetos del formulario (inputs y secciones)
-function mostrarform(flag) {
-	limpiar();
-	if (flag) {
-		$("#listadoregistros").hide();
-		$("#formularioregistros").show();
-		$("#btnGuardar").prop("disable", false);
-		$("#btnadd").hide();
-	} else {
-		$("#listadoregistros").show();
-		$("#formularioregistros").hide();
-		$("#btnadd").show();
-	}
-}
-//Cancelar formulario
-//Declarar la función cancelar formulario
-function cancelarform() {
-	limpiar();
-	mostrarform(false);
 }
 //Listar
 //Declarar la función listar
@@ -95,9 +67,7 @@ function listar() {
 }
 //Guardar y editar
 /*Declarar la función guardar y editar para la creación o edición de registros*/
-function guardaryeditar(e) {
-	//Evitar que la función se ejecute al inicio del proceso, permitiendo que los demás se ejecuten en orden
-	e.preventDefault();
+function guardaryeditar() {
 	//Al seleccionar el botón (#btnGuardar), se deshabilitará
 	$("#btnGuardar").prop("disable", true);
 	//Obtener los valores de los elementos del formulario mediante el id del formulario (#formulario)
@@ -113,8 +83,6 @@ function guardaryeditar(e) {
 		success: function (datos) {
 			//Enviara un mensaje de alerta
 			bootbox.alert(datos);
-			//Ocular el formulario mediante la función mostrarform
-			mostrarform(false);
 			//Recargar la tabla de los registros
 			tabla.ajax.reload();
 		}
@@ -127,13 +95,12 @@ function guardaryeditar(e) {
 registro en un formulario, al recibir el id del registro,
 para obtener los datos*/
 function mostrar(idBaja) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo
 	y función donde se obtendrán los datos*/
 	$.post("../ajax/bajaarticulo.php?op=mostrar", {
 		idBaja: idBaja //indicar el parámetro del id del registro
 	}, function (data, status) { //Función  donde obtener los valores del registro
 		data = JSON.parse(data); //Convertirlos datos a un objeto JavaScript
-		mostrarform(true); //Mostrar el formulario mediante la función mostrarform con el parámetro true
 		//Declarar los inputs donde se devolverán los valores almacenados
 		$("#idBaja").val(data.idBaja);
 		$("#fechaBaja").val(data.fechaBaja);

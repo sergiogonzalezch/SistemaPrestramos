@@ -100,7 +100,7 @@ function guardaryeditar() {
 registro en un formulario, al recibir el id del registro,
 para obtener los datos*/
 function mostrar(idCargo) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo
 	y función donde se obtendrán los datos*/
 	$.post("../ajax/cargos.php?op=mostrar", {
 		idCargo: idCargo //indicar el parámetro del id del registro

@@ -9,7 +9,7 @@ require 'superior.php';
 require_once "../models/Consulta.php";
 //Crear una instancia del modelo
 $consulta= new Consulta();
-	//
+//Estadístico articulos por ubicacion
 $ubicacion=$consulta->estadisticoUbicacion();
 $edificio="";
 $total="";
@@ -20,20 +20,22 @@ while($registro=$ubicacion->fetch_object()){
 	$edificio=substr($edificio,0,-1);
 	$total=substr($total,0,-1);
 ?>
+<!--Inicio de contenido-->
 <div id="content">
+	<!--Sección 1, detalles de la vista-->
 	<section class="bg-light py-3">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9 col-md-8">
-					<h1 class="font-weight-bold mb-0">Estadísticas de prestamos x edificios</h1>
-					<p>Pagina de estadísticas</p>
+					<h1 class="font-weight-bold mb-0">Estadística de prestamos por edificio</h1>
+					<p>Vista de estadística artículos entregados según el edifico donde fueron usados.</p>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!--Sección 2, estadísticas-->
 	<section>
 		<div class="container d-flex justify-content-center">
-
 			<div class="col-lg-11 col-md-7 block-center m-3 ">
 				<div class="card rounded-0">
 					<div class="card-header bg-light">
@@ -45,11 +47,12 @@ while($registro=$ubicacion->fetch_object()){
 				</div>
 			</div>
 		</div>
-
 	</section>
-
 </div>
+<!--Fin de contenido-->
+<!--Llamar al script para generar las estadísticas-->
 <script src="../public/js/chart.js"></script>
+<!--Código JavaScript para generar la estadistisca.-->
 <script>
 	const ctx = document.getElementById('estadistico').getContext('2d');
 	const ubicaciones = new Chart(ctx, {

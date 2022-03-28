@@ -93,7 +93,7 @@ $pdf->Output();
 
 
 }else{
-	echo "No tiene permiso ";
+	header( 'Location:../views/noacceso.php' );
 	}
 
 }

@@ -6,7 +6,7 @@ session_start();
 <html lang="es">
 
 <head>
-	<!-- Required meta tags -->
+	<!-- Etiquetas meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Bootstrap CSS -->
@@ -21,7 +21,6 @@ session_start();
 	<link rel="stylesheet" href="../public/css/bootstrap-select.min.css">
 	<!--Hoja de estilos-->
 	<link rel="stylesheet" href="../public/css/style.css">
-
 </head>
 
 <body class="bg-grey">
@@ -30,15 +29,11 @@ session_start();
 			<div class="logo">
 				<h4 class="text-ligth font-weight-bold">CheckGo</h4>
 				<div class="menu">
-
 					<a class="d-block p-3 text-ligth" href="escritorio.php"><i class="fas fa-th mr-2"></i>Escritorio</a>
-
 					<a class="btn text-ligth" data-toggle="collapse" href="#articulos-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-archive  mr-2 "></i>Almacen</a>
 					<div id="articulos-collapse" class="collapse">
-						<!--						<a class="d-block p-3 text-ligth" href="anaqueles.php"><i class="fas fa-caret-right mr-2"></i>Anaqueles</a>-->
-						<a class="d-block p-3 text-ligth" href="articulo.php"><i class="fas fa-caret-right mr-2"></i>Articulos</a>
-						<a class="d-block p-3 text-ligth" href="bajaarticulo.php"><i class="fas fa-caret-right mr-2"></i>Articulos en baja</a>
-						<!--						<a class="d-block p-3 text-ligth" href="tipoarticulo.php"><i class="fas fa-caret-right mr-2"></i>Tipos de articulos</a>-->
+						<a class="d-block p-3 text-ligth" href="articulo.php"><i class="fas fa-caret-right mr-2"></i>Artículos</a>
+						<a class="d-block p-3 text-ligth" href="bajaarticulo.php"><i class="fas fa-caret-right mr-2"></i>Artículos en baja</a>
 					</div>
 
 					<a class="btn text-ligth" data-toggle="collapse" href="#personas-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-user mr-2"></i>Personas</a>
@@ -51,33 +46,24 @@ session_start();
 							}
 						?>
 					</div>
-
-					<a class="d-block p-3 text-ligth" href="prestamos.php"><i class="fas fa-tasks  mr-2"></i>Prestamos</a>
+					<a class="d-block p-3 text-ligth" href="prestamos.php"><i class="fas fa-tasks  mr-2"></i>Préstamos</a>
 					<a class="btn text-ligth" data-toggle="collapse" href="#consultas-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-list-alt mr-2"></i>Consultas</a>
 					<div id="consultas-collapse" class="collapse">
-
-						<a class="d-block p-3 text-ligth" href="consultaservicios.php"><i class="fas fa-caret-right mr-2"></i> Servicios</a>
-
+						<a class="d-block p-3 text-ligth" href="consultaubicaciones.php"><i class="fas fa-caret-right mr-2"></i>Artículos por ubicación</a>
+						<a class="d-block p-3 text-ligth" href="consultaprestarios.php"><i class="fas fa-caret-right mr-2"></i>Artículos por solicitante</a>
+						<a class="d-block p-3 text-ligth" href="consultadevolucion.php"><i class="fas fa-caret-right mr-2"></i>Condiciones de devolución</a>
 						<a class="d-block p-3 text-ligth" href="consultaentregas.php"><i class="fas fa-caret-right mr-2"></i>Entregas</a>
-
-						<a class="d-block p-3 text-ligth" href="consultaubicaciones.php"><i class="fas fa-caret-right mr-2"></i>Prestamos por ubicacion</a>
-
-						<a class="d-block p-3 text-ligth" href="consultadevolucion.php"><i class="fas fa-caret-right mr-2"></i>Condiciones devolucion</a>
-
-						<a class="d-block p-3 text-ligth" href="consultaprestarios.php"><i class="fas fa-caret-right mr-2"></i>Prestamos por solicitante</a>
-
+						<a class="d-block p-3 text-ligth" href="consultaservicios.php"><i class="fas fa-caret-right mr-2"></i>Servicios</a>
 					</div>
 					<a class="btn text-ligth" data-toggle="collapse" href="#estadisticas-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-chart-bar mr-2"></i>Estadísticas</a>
 					<div id="estadisticas-collapse" class="collapse">
 						<a class="d-block p-3 text-ligth" href="estadisticaubicacion.php"><i class="fas fa-caret-right mr-2"></i>Total por edificio</a>
-						<a class="d-block p-3 text-ligth" href="estadisticaservicios.php"><i class="fas fa-caret-right mr-2"></i>Totales de servicios</a>
+						<a class="d-block p-3 text-ligth" href="estadisticaservicios.php"><i class="fas fa-caret-right mr-2"></i>Total de servicios</a>
 						<a class="d-block p-3 text-ligth" href="estadisticatotales.php"><i class="fas fa-caret-right mr-2"></i>Total anual</a>
 					</div>
-
-					<a class="btn text-ligth" data-toggle="collapse" href="#configuracion-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-cog  mr-2 "></i>Configuracion</a>
+					<a class="btn text-ligth" data-toggle="collapse" href="#configuracion-collapse" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-cog  mr-2 "></i>Configuración</a>
 					<div id="configuracion-collapse" class="collapse">
 						<a class="d-block p-3 text-ligth" href="anaqueles.php"><i class="fas fa-caret-right mr-2"></i>Anaqueles</a>
-						<a class="d-block p-3 text-ligth" href="tipoarticulo.php"><i class="fas fa-caret-right mr-2"></i>Tipos de articulos</a>
 						<?php
 							if ( $_SESSION['usuarios']['rolUsuario'] == "Administrador" ) {
 							echo '<a class="d-block p-3 text-ligth" href="cargos.php">
@@ -90,8 +76,9 @@ session_start();
 									<i class="fas fa-caret-right mr-2"></i>Programas educativos</a>';
 							}
 						?>
+						<a class="d-block p-3 text-ligth" href="tipoarticulo.php"><i class="fas fa-caret-right mr-2"></i>Tipos de artículos</a>
 					</div>
-					<a href="#infoModal" class="d-block p-3 text-ligth" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info mr-2"></i>Informacion</a>
+					<a href="#infoModal" class="d-block p-3 text-ligth" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info mr-2"></i>Información</a>
 				</div>
 			</div>
 		</div>
@@ -106,13 +93,13 @@ session_start();
 						</button>
 					</div>
 					<div class="modal-body">
-						<p>Sistema de prestamos de equipos y accesorios para el Centro de Ingenieria Computaccional (CIC) <i>CheckGo.</i>
+						<p>Sistema de préstamos de equipos y accesorios para el Centro de Ingeniería Computacional (CIC) <i>CheckGo.</i>
 							<br>
-							<b>Version:</b> 1.0.
+							<b>Versión:</b> 1.0.
 							<br>
 							<b>Desarrollador:</b> PP-Sergio Guadalupe González Chávez.
 							<br>
-							<i>Licenciatura en ingenieria en sistemas computacionales.</i>
+							<i>Licenciatura en ingeniería en sistemas computacionales.</i>
 						</p>
 					</div>
 					<div class="modal-footer">

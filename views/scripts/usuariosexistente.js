@@ -1,6 +1,3 @@
-/*Crear la variable global tabla para realizar el procedimiento
-de enlistar los registros*/
-var tabla;
 //Init
 //Función que se ejecuta al inicio
 function init() {
@@ -9,7 +6,7 @@ function init() {
 		//Llamar al metodo guardar
 		guardar(e);
 	});
-	/*Mediante Jquery del metodo post, indicar la URL del archivo y
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo y
 	función donde se obtendrán los datos y visualizarlos en el elemento input
 	de tipo select de HTML*/
 	$.post("../ajax/usuariosexistentes.php?op=selecDato", function (r) {
@@ -18,7 +15,7 @@ function init() {
 		$('#idDatosGenerales').selectpicker('refresh');
 	});
 	//Ocultat la imagen de perfil
-	$("#imagenmuestra").hide();
+	$("#imagenMuestra").hide();
 	//Visualizar los valores del select
 	$("#rolUsuario").val("");
 	//Refrescar el select
@@ -32,21 +29,20 @@ function limpiar() {
 	$("#rolUsuario").selectpicker('refresh');
 	$("#contrasenaUsuario").val("");
 	$("#aliasUsuario").val("");
-	$("#imagenmuestra").attr("src", "");
-	$("#imagenactual").val("");
+	$("#imagenMuestra").attr("src", "");
+	$("#imagenActual").val("");
 	$("#idDatosGenerales").val("");
 	$("#idDatosGenerales").selectpicker('refresh');
 }
 //Guardar
 /*Declarar la función guardar para la creación de registros*/
 function guardar(e) {
-	//Evitar que la función se ejecute al inicio del proceso,
-	permitiendo que los demás se ejecuten en orden
+	//Evitar que la función se ejecute al inicio del proceso, permitiendo que los demás se ejecuten en orden
 	e.preventDefault();
 	//Al seleccionar el botón (#btnGuardar), se deshabilitará
 	$("#btnGuardar").prop("disable", true);
-	//Obtener los valores de los elementos del formulario mediante el
-	id del formulario(#formulario)
+	/*Obtener los valores de los elementos del formulario mediante el
+	id del formulario(#formulario)*/
 	var formData = new FormData($("#formulario")[0]);
 	//Metodo ajax para el envío de los datos del formulario
 	$.ajax({
@@ -58,12 +54,12 @@ function guardar(e) {
 		success: function (datos) {
 			//Enviara un mensaje de alerta
 			bootbox.alert(datos);
-			//Recargar la tabla de los registros
-			tabla.ajax.reload();
 		}
 	});
 	//Instanciar la función limpiar para vaciar el formulario
 	limpiar();
+	//Redirigir a la vista usuarios.php
+	location.href = 'usuarios.php';
 }
 //Instanciar la función init para ejecutar al inicio y las funciones dentro de esta
 init();

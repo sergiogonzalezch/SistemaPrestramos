@@ -17,13 +17,13 @@ function init() {
 		guardaryeditar(e);
 	})
 	//Codigo para ocultar el elemento de formulario para visualizar la imagen del articulo
-	$("#imagenmuestra").hide();
+	$("#imagenMuestra").hide();
 }
 //Limpiar
 //Declarar una función para limpiar los inputs del formulario
 function limpiar() {
 	$("#idDatosGenerales").val("");
-	$("#idClientes").val("");
+	$("#idUsuarios").val("");
 	$("#nombres").val("");
 	$("#primerApellido").val("");
 	$("#segundoApellido").val("");
@@ -32,8 +32,8 @@ function limpiar() {
 	$("#rolUsuario").selectpicker('refresh');
 	$("#contrasenaUsuario").val("");
 	$("#aliasUsuario").val("");
-	$("#imagenmuestra").attr("src", "");
-	$("#imagenactual").val("");
+	$("#imagenMuestra").attr("src", "");
+	$("#imagenActual").val("");
 }
 //Mostrar formulario
 //Declarar la función para visualizar los objetos del formulario (inputs y secciones)
@@ -47,15 +47,15 @@ function mostrarform(flag) {
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disable", false);
-		$("#btnadd").hide();
-		$("#btnusuario").hide();
+		$("#btnAdd").hide();
+		$("#btnNew").hide();
 	} else {
 		/*Si el valor de la bandera (flag) es igual a falso entonces
 		los elementos del formulario serán ocultados y el resto serán visibles*/
 		$("#listadoregistros").show();
 		$("#formularioregistros").hide();
-		$("#btnadd").show();
-		$("#btnusuario").show();
+		$("#btnAdd").show();
+		$("#btnNew").show();
 	}
 }
 //Cancelar formulario
@@ -155,7 +155,7 @@ function guardaryeditar(e) {
 de un registro en un formulario, al recibir el id del registro,
 para obtener los datos*/
 function mostrar(idDatosGenerales) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo y función donde se obtendrán los datos*/
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo y función donde se obtendrán los datos*/
 	$.post("../ajax/usuarios.php?op=mostrar", {
 		idDatosGenerales: idDatosGenerales //indicar el parámetro del id del registro
 	}, function (data, status) { //Función  donde obtener los valores del registro
@@ -163,6 +163,7 @@ function mostrar(idDatosGenerales) {
 		mostrarform(true); //Mostrar el formulario mediante la función mostrarform con el parámetro true
 		//Declarar los inputs donde se devolverán los valores almacenados
 		$("#idDatosGenerales").val(data.idDatosGenerales);
+		$("#idUsuarios").val(data.idUsuarios);
 		$("#nombres").val(data.nombres);
 		$("#primerApellido").val(data.primerApellido);
 		$("#segundoApellido").val(data.segundoApellido);
@@ -171,9 +172,9 @@ function mostrar(idDatosGenerales) {
 		$("#rolUsuario").selectpicker('refresh');
 		$("#aliasUsuario").val(data.aliasUsuario);
 		$("#contrasenaUsuario").val("");
-		$("#imagenmuestra").show();
-		$("#imagenmuestra").attr("src", "../files/usuarios/" + data.imagen);
-		$("#imagenactual").val(data.imagen);
+		$("#imagenMuestra").show();
+		$("#imagenMuestra").attr("src", "../files/usuarios/" + data.imagen);
+		$("#imagenActual").val(data.imagen);
 	})
 }
 //Instanciar la función init para ejecutar al inicio y las funciones dentro de esta

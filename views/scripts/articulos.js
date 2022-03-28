@@ -15,7 +15,7 @@ function init() {
 		//Llamar al metodo guardar
 		guardaryeditar(e);
 	})
-	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo
 	y función donde se obtendrán los datos y visualizarlos en el elemento
 	input de tipo select de HTML*/
 	$.post("../ajax/articulos.php?op=selecTipoArticulo", function (r) {
@@ -33,7 +33,7 @@ function init() {
 	});
 	/*Código para ocultar el elemento de formulario
 	para visualizar la imagen del artículo*/
-	$("#imagenmuestra").hide();
+	$("#imagenMuestra").hide();
 }
 //Limpiar
 //Declarar la función limpiar para vaciar los campos del formulario
@@ -52,8 +52,9 @@ function limpiar() {
 	$("#idAnaquel").selectpicker('refresh');
 	$("#idTipoArticulo").val("");
 	$("#idTipoArticulo").selectpicker('refresh');
-	$("#imagenmuestra").attr("src", "");
-	$("#imagenactual").val("");
+	$("#imagenMuestra").attr("src", "");
+	$("#imagenActual").val("");
+	$("#imagen").val("");
 	$("#codigoBarras").val("");
 	$("#print").hide();
 }
@@ -71,13 +72,13 @@ function mostrarform(flag) {
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disable", false);
-		$("#btnadd").hide();
+		$("#btnAdd").hide();
 	} else {
 		/*Si el valor de la bandera (flag) es igual a falso entonces
 		los elementos del formulario serán ocultados y el resto serán visibles*/
 		$("#listadoregistros").show();
 		$("#formularioregistros").hide();
-		$("#btnadd").show();
+		$("#btnAdd").show();
 	}
 }
 //Cancelar formulario
@@ -179,7 +180,7 @@ function guardaryeditar(e) {
 registro en un formulario, al recibir el id del registro,
 para obtener los datos*/
 function mostrar(idArticulo) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo y
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo y
 	función donde se obtendrán los datos*/
 	$.post("../ajax/articulos.php?op=mostrar", {
 		idArticulo: idArticulo //indicar el parámetro del id del registro
@@ -196,9 +197,9 @@ function mostrar(idArticulo) {
 		$("#condicionArticulo").val(data.condicionArticulo);
 		$("#condicionArticulo").selectpicker('refresh');
 		$("#codigoBarras").val(data.codigoBarras);
-		$("#imagenmuestra").show();
-		$("#imagenmuestra").attr("src", "../files/articulos/" + data.imagen);
-		$("#imagenactual").val(data.imagen);
+		$("#imagenMuestra").show();
+		$("#imagenMuestra").attr("src", "../files/articulos/" + data.imagen);
+		$("#imagenActual").val(data.imagen);
 		$("#idAnaquel").val(data.idAnaquel);
 		$("#idAnaquel").selectpicker('refresh');
 		$("#idTipoArticulo").val(data.idTipoArticulo);
@@ -222,13 +223,14 @@ function baja(idArticulo, observacionBaja) {
 				title: "Escriba el motivo de la baja", //Titulo del arte
 				centerVertical: true, //Alinear verticalmente
 				inputType: 'textarea', //Tipo de input, área de texto
-				callback: function (result) { //Respuesta de confirmación
+				callback: function (result) { //Retornara valor del formulario
+					//Almacena valor del formulario en la variable observacionBaja
 					observacionBaja = result;
-					//Mediante otro if evaluara la confirmación de dar baja el artículo
+					//Mediante otro if evaluara si fue enviado un valor.
 					if (result) {
-						//Si la respuesta (result), es afirmativa entonces guardara
-						el registro de baja del artículo
-						/*Mediante Jquery del metodo post, indicar la URL del archivo
+						/*Si la respuesta (result), es afirmativa entonces guardara
+						el registro de baja del artículo*/
+						/*Mediante jQuery del metodo post, indicar la URL del archivo
 						y función donde se obtendrán los datos*/
 						$.post("../ajax/articulos.php?op=baja", {
 							//Declarar los valores que obtendrá
@@ -255,7 +257,7 @@ function reactivar(idArticulo) {
 		if (result) {
 			/*Si la respuesta (result), es afirmativa entonces procederá
 			a llamar la función para reactivar el artículo*/
-			/*Mediante Jquery del metodo post, indicar la URL
+			/*Mediante jQuery del metodo post, indicar la URL
 			del archivo y función a ejecutar*/
 			$.post("../ajax/articulos.php?op=reactivar", {
 				//Valor a recibir

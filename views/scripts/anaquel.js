@@ -21,8 +21,8 @@ function limpiar() {
 /*Declarar función listar que permite visualizar
 los registro de un a consulta*/
 function listar() {
-	//Establecer el elemento HTML de la tabla en la variable
-	global mediante el id de la tabla(#tbllistado)
+	/*Establecer el elemento HTML de la tabla en la variable
+	global mediante el id de la tabla(#tbllistado)*/
 	tabla = $('#tbllistado').dataTable({
 		"aProcessing": true, //Activar el procesamiento del datatables
 		"aServerSide": true, //Paginación y filtrado realizados por el servidor
@@ -79,8 +79,8 @@ o edición de registros*/
 function guardaryeditar() {
 	//Al seleccionar el botón (#btnGuardar), se deshabilitará
 	$("#btnGuardar").prop("disable", true);
-	//Obtener los valores de los elementos del formulario mediante
-	el id del formulario(#formulario)
+	/*Obtener los valores de los elementos del formulario
+	mediante el id del formulario(#formulario)*/
 	var formData = new FormData($("#formulario")[0]);
 	//Metodo ajax para el envío de los datos del formulario
 	$.ajax({
@@ -105,7 +105,7 @@ function guardaryeditar() {
 de un registro en un formulario, al recibir el id del registro,
 para obtener los datos*/
 function mostrar(idAnaquel) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo
 	y función donde se obtendrán los datos*/
 	$.post("../ajax/anaquel.php?op=mostrar", {
 		idAnaquel: idAnaquel //indicar el parámetro del id del registro

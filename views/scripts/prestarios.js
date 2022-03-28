@@ -15,7 +15,7 @@ function init() {
 		//Llamar al metodo guardar
 		guardaryeditar(e);
 	});
-	/*Mediante Jquery del metodo post, indicar la URL del
+	/*Mediante jQuerydel metodo post, indicar la URL del
 	archivo y función donde se obtendrán los datos y visualizarlos
 	en el elemento input de tipo select de HTML*/
 	$.post("../ajax/prestarios.php?op=selecPrograma", function (r) {
@@ -23,7 +23,7 @@ function init() {
 		//Refrescar el select
 		$('#idProgramaEducativo').selectpicker('refresh');
 	});
-	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo
 	y función donde se obtendrán los datos y visualizarlos en el elemento
 	input de tipo select de HTML*/
 	$.post("../ajax/prestarios.php?op=selecCargo", function (r) {
@@ -59,16 +59,16 @@ function mostrarform(flag) {
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disable", false);
-		$("#btnadd").hide();
-		$("#btnnew").hide();
+		$("#btnAdd").hide();
+		$("#btnNew").hide();
 	} else {
 		/*Si el valor de la bandera (flag) es igual a falso
 		entonces los elementos del formulario serán ocultados
 		y el resto serán visibles*/
 		$("#listadoregistros").show();
 		$("#formularioregistros").hide();
-		$("#btnadd").show();
-		$("#btnnew").show();
+		$("#btnAdd").show();
+		$("#btnNew").show();
 	}
 }
 //Cancelar formulario
@@ -168,7 +168,7 @@ function guardaryeditar(e) {
 registro en un formulario, al recibir el id del registro,
 para obtener los datos*/
 function mostrar(idDatosGenerales) {
-	/*Mediante Jquery del metodo post, indicar la URL del archivo
+	/*Mediante jQuerydel metodo post, indicar la URL del archivo
 	y función donde se obtendrán los datos*/
 	$.post("../ajax/prestarios.php?op=mostrar", {
 		idDatosGenerales: idDatosGenerales //indicar el parámetro del id del registro

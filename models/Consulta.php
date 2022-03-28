@@ -144,7 +144,7 @@ Class Consulta {
 		DATE_FORMAT(prestamos.fechaPrestamo,'%M','es_MX')Mes,
 		clientes.matricula AS MatriculaCliente,
 		CONCAT(datosgenerales.nombres,' ', datosgenerales.primerApellido,
-		' ', datosgenerales.segúndoApellido)AS Nombre,
+		' ', datosgenerales.segundoApellido)AS Nombre,
 		tipoarticulo.tipoArticulo AS Tipo,
 		Count(articulos.etiqueta) AS NoArticulos
 		FROM ((datosgenerales INNER JOIN clientes

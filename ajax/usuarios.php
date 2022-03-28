@@ -33,7 +33,7 @@ switch ( $_GET["op"] ) {
 	!is_uploaded_file( $_FILES['imagen']['tmp_name'] ) )
 	{
 		//De ser así usara el elemento actual de imagen
-		$imagen = $_POST["imagenactual"];
+		$imagen = $_POST["imagenActual"];
 	//Si existe el archivo será almacenado
 	} else {
 		//Obtiene la extensión y los datos de la imagen
@@ -124,7 +124,7 @@ switch ( $_GET["op"] ) {
 			$contrasena = $_POST['contrasena'];
 			//Encriptar la contraseña del login
 			$clavehash = hash( "SHA256", $contrasena );
-			//Verificar si ambas contraseñas encirptadas sean identicas
+			//Verificar si ambas contraseñas encriptadas sean idénticas
 			$respuesta = $usuarios->verificar( $alias, $clavehash );
 			//Si existe una coincidencia
 			if ( $respuesta->num_rows>0 ):
@@ -138,7 +138,7 @@ switch ( $_GET["op"] ) {
 					$_SESSION['usuarios'] = $datos;
 				}
 			}
-			/*Si no hubo error entonce enviara un mensaje de error con valor falso (false) y
+			/*Si no hubo error entonces enviara un mensaje de error con valor falso (false) y
 			el valor del rol del usuario para verificar los accesos que tendrá el usuario*/
 			echo json_encode( array( 'error'=>false, 'rol'=>$datos['rolUsuario'] ) );
 			else:

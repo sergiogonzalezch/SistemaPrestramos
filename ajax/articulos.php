@@ -37,7 +37,7 @@ switch ( $_GET["op"] ) {
 	if ( !file_exists( $_FILES['imagen']['tmp_name'] ) ||
 	!is_uploaded_file( $_FILES['imagen']['tmp_name'] ) ) {
 		//De ser así usara el elemetno actual de imagen
-		$imagen = $_POST["imagenactual"];
+		$imagen = $_POST["imagenActual"];
 		//Si existe el archivo será almacenado
 	} else {
 		//Obtiene la extensión y los datos de la imagen
@@ -112,7 +112,7 @@ switch ( $_GET["op"] ) {
 				<i class="fas fa-edit"></i></button>'.' <button class="btn btn-danger"
 				onclick="baja('.$registro->Id.')"><i class="fas fa-times"></i></button>':
 			//Botón para reactivar el articulo
-			'<button class="btn btn-primary" onclick="reactivar('.$registro->Id.')">
+			'<button class="btn btn-success" onclick="reactivar('.$registro->Id.')">
 				<i class="fas fa-check"></i></button>',
 			"1"=>$registro->TipoArticulo,
 			"2"=>$registro->Etiqueta,

@@ -161,7 +161,7 @@ Class Usuarios {
 	* @return Retorna una ejecución SQL
 	*/
 	public function verificar( $aliasUsuario, $contrasenaUsuario ) {
-		//Retrasar dos segundos la validacion
+		//Retrasar dos segundos la validación
 		sleep(1);
 		$sql = "SELECT idUsuarios,
 		rolUsuario,

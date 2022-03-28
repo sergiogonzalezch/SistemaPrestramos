@@ -216,13 +216,13 @@ switch ( $_GET["op"] ) {
 		de cada una de las celdas y los campos con información de los
 		artículos prestados en el registro del préstamo*/
 		echo 	'<thead class="filas">
-					<th>Prestamo</th>
+					<th>Préstamo</th>
 					<th>Artículo</th>
 					<th>Entregado</th>
-					<th>Condicion de entrega</th>
+					<th>Condición de entrega</th>
 					<th>Devuelto</th>
-					<th>Devolucion</th>
-					<th>Condicion devolucion</th>
+					<th>Devolución</th>
+					<th>Condición de devolución</th>
 					<th>Observaciones</th>
 				</thead>';
 		/*Mediante un ciclo while los valores serán desplegados en celda con código php
@@ -243,8 +243,8 @@ switch ( $_GET["op"] ) {
 	<?php /*Realiza una operación ternaria donde si el valor de devuelto es igual a uno
 	desplegara un span de color verde con la leyenda Devuelto.
 	Caso contrario visualizar un span rojo con el texto No Devuelt0*/
-			echo( $registro['devuelto'] == 1 )?'<td><span class="align-middle badge badge-success text-wrap"><i class=" fas fa-check"></i>Devuelto</span></td>':
-			'<td><span class="align-middle badge badge-danger text-wrap"><i class="fas fa-times"></i>No Devuelto</span></td>';
+			echo( $registro['devuelto'] == 1 )?'<td><span class="align-middle badge badge-success text-wrap"><i class=" fas fa-check"></i> Devuelto</span></td>':
+			'<td><span class="align-middle badge badge-danger text-wrap"><i class="fas fa-times"></i> No Devuelto</span></td>';
 			?>
 	<td><?php echo $registro['fechaDevolucion'];
 			?></td>
@@ -281,7 +281,7 @@ switch ( $_GET["op"] ) {
 	<?php	/*Crea un enlace HTML con propiedades de botón para desplegar un modal con un
 	formulario que permite registrar y actualizar la devolución de los artículos
 	al recibir el id del registro articulosprestamos ( idArticuloPrestamo )*/
-			echo '<td><a type = "button" name = "devolucion"  data-toggle = "modal" href = "#modalDevolucion" data-target = "#modalDevolucion" class = "btn btn-success" onclick = "obtenerDevolucion('.$registro['idArticuloPrestamo'].')"><i class = "fas fa-check"></i>Devolver</a></td>';
+			echo '<td><a type = "button" name = "devolucion"  data-toggle = "modal" href = "#modalDevolucion" data-target = "#modalDevolucion" class = "btn btn-success" onclick = "obtenerDevolucion('.$registro['idArticuloPrestamo'].')"><i class = "fas fa-check"></i> Devolver</a></td>';
 			?>
 	<td><?php echo $registro['etiqueta'];
 			?></td>

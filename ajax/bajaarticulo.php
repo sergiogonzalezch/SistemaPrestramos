@@ -69,7 +69,7 @@ switch ( $_GET["op"] ) {
 			donde se llama la función para editar
 			el campo mediante el Id del registro tambien*/
 			"0"=>'<button class="btn btn-warning"
-			onclick="mostrar('.$registro->Id.')">
+			onclick="mostrar('.$registro->Id.')" data-toggle = "modal" href = "#myModal" data-target = "#myModal">
 			<i class="fas fa-edit"></i></button>',
 			"1"=>$registro->FechaBaja,
 			"2"=>$registro->Observaciones,

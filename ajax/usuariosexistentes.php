@@ -36,7 +36,7 @@ switch ( $_GET["op"] ) {
 	if ( !file_exists( $_FILES['imagen']['tmp_name'] ) ||
 	!is_uploaded_file( $_FILES['imagen']['tmp_name'] ) )
 	{	//De ser así usara el elemento actual de imagen
-		$imagen = $_POST["imagenactual"];
+		$imagen = $_POST["imagenActual"];
 	//Si existe el archivo será almacenado
 	} else {
 		//Obtiene la extensión y los datos de la imagen

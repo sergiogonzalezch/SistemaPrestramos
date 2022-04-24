@@ -1,5 +1,5 @@
-CREATE DATABASE dbsistemaprestamos;
-USE dbsistemaprestamos;
+CREATE DATABASE dbsistema;
+USE dbsistema;
 CREATE TABLE DatosGenerales
 (
   idDatosGenerales INT NOT NULL AUTO_INCREMENT,

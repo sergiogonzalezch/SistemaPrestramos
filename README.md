@@ -53,11 +53,6 @@ Submit a pull request for review.
 License
 This project is under the MIT License. See the LICENSE file for more details.
 
-Contact
-For more information or inquiries, you can contact the main developer:
-
 Name: Sergio González
-
-Email: correo@example.com
 
 GitHub: @sergiogonzalezch
